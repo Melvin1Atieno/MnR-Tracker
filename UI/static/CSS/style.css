@@ -1,43 +1,81 @@
-body {
-    margin:0;
-    padding:0;
+/* Navigation bar styling */
+.navbar {
+    display:flex;
+    background:#333;
+    padding:16px;
+    color:white;
+    margin-bottom:0px;
 }
-nav {
-    width:100%;
-    background-color:rgb(218, 218, 248);
+.navbar-brand a {
+    color:white;
 }
-ul {
-    overflow:hidden;
-    padding:0;
-    margin:0 auto;
-    /* display:block; */
-    /* display:inline; */
+.navbar-item{
+    display:flex;
 }
-ul li { 
-    list-style-type:none;
-    display:inline-block;
-    padding:20px;
+.navbar-link {
+    padding-right: 15px;
 }
-ul li:hover{
-    background-color: white;
+.navbar-right {
+    margin-left:auto;
 }
-ul li a {
-    color:rgb(0, 0, 0);
-    text-decoration: none;
+.navbar-toggle {
+    display:none;
 }
-.toggle{
-    width: 100%;
-    padding:10px 20px;
-    background: #001f44;
-    text-align: right;
-    box-sizing: border-box;
-    color: #fff;
-    font-size: 150%;
-    display: none;
+
+/* styling for smaller screens, adds vertical menu */
+@media only screen and (max-width:768px){
+    .navbar-item, .navbar {
+        flex-direction: column;
+        /* justify-content:center; */
+    }
+    .navbar-right{
+        margin-left:0;
+    }
+    /* make the navbar items invisible on smaller screens */
+
+    .navbar-item{
+        display:none;
+    }
+    .navbar{
+        justify-content: center;
+    }
+    .navbar-toggle{
+        align-self:flex-end;
+        display:initial;
+        position:absolute;
+        cursor:pointer;
+    }
 
 }
-@media(max-width:768px){
-    .toggle{
-        display:block;
-    }
+/* styling for form section */
+.section {
+    height:100%;
+    margin-top:0px;
+    background-image: url(../images/tools.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-height: 90%;
+}
+.form-control{
+    margin:auto;
+    justify-content: center;
+}
+.form-header {
+    color:#ccc;
+    text-align: center;
+    font-size: 190%;
+}
+input{
+    width:50%;
+    padding:12px 20px;
+    margin:8px 0;
+    display: inline-block;
+    border:1px solid #ccc;
+    border-radius:4px;
+    box-sizing: border-box;
+}
+label {
+    color: #ccc;
+    padding: 20px;
+
 }
