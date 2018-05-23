@@ -1,17 +1,17 @@
 
 body {
     margin:2px;
-    height:100%;
 }
 /* Navigation bar styling */
 .navbar {
     display:flex;
-    background:#777777;
+    background:#333;
     padding:16px;
-    color:white;
+    color:#ffffff;
     margin-bottom:0px;
 }
 .navbar-brand a {
+    padding:2px 8px;
     color:white;
     font-size: 150%;
 }
@@ -19,27 +19,23 @@ body {
     display:flex;
 }
 .navbar .navbar-link {
-    padding-right: 15px;
+    padding: 2px 8px;
 }
 .navbar .navbar-link :hover {
     color:black;
-    background-color: #e6e1e1;
+    background-color: rgb(153, 151, 151);
+}
+.navbar .navbar-link a {
+    text-decoration:none;
 }
 .navbar-right {
     margin-left:auto;
 }
 .navbar-right a {
-    color:white;
-    padding: 0 40px;
+    font-size: 100%;
+    color:#ffffff;
+    padding: 10% 40px;
 }
-.navbar-toggle {
-    display:none;
-}
-.navbar .navbar-link a {
-    text-decoration: none;
-
-}
-
 
 /* styling for form section */
 .section {
@@ -110,26 +106,27 @@ button :hover {
 }
 /* styling for smaller screens */
 @media only screen and (max-width:768px){
-    .navbar-item, .navbar {
-        flex-direction: column;
+    .navbar {
+        display: block;
+        padding:10px;
         /* justify-content:center; */
     }
-    .navbar-right{
-        margin-left:0;
-    }
-    /* make the navbar items invisible on smaller screens */
-
     .navbar-item{
-        display:none;
+        margin-top:2%;
+        display:block;
+        padding:2%;
     }
-    .navbar{
-        justify-content: center;
+    .navbar-link{
+        margin: 2% 5%;
+        text-align: center;
     }
-    .navbar-toggle{
-        align-self:flex-end;
-        display:initial;
-        position:absolute;
-        cursor:pointer;
+    .navbar .navbar-item .nav-link :hover{
+        background-color: #ccc;
     }
+    .navbar-right a {
+        max-width:100;
+        padding: 3% 30%;
+    }
+
 
 }
