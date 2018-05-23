@@ -1,7 +1,12 @@
+
+body {
+    margin:2px;
+    height:100%;
+}
 /* Navigation bar styling */
 .navbar {
     display:flex;
-    background:#333;
+    background:#777777;
     padding:16px;
     color:white;
     margin-bottom:0px;
@@ -39,39 +44,43 @@
 /* styling for form section */
 .section {
     height:100%;
-    margin-top:0px;
+    margin:0;
     background-image: url(../images/tools.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     max-height: 90%;
 }
  form .form-control {
-    width:50%;
+    width:80%;
     padding:12px;
     border:1px solid #ccc;
     border-radius:4px;
-    resize: vertical;
-    /* box-sizing: border-box; */
+    resize:horizontal;
+    box-sizing: border-box;
 }
 .form-header {
     color:#ccc;
     text-align: center;
     font-size: 190%;
 }
+form {
+    margin-left:30%;
+}
 form .form-group label {
-    display:inline-block;
-    margin-right:20px;
+    /* display:inline-block; */
+    margin:5% auto;
     color: #ccc;
     font-size: 250%;
     padding: 20px 20px 20px 0;
 
 }
-form{
-    text-align: right;
+form .form-group {
+    display:block;
+    text-align: left;
     border-radius: 5px;
     padding:20px 20px;
     max-width:50%;
-    margin-left:15%;
+    /* margin-left:30%; */
 }
 button {
     background-color: rgb(0, 0, 0);
@@ -90,7 +99,15 @@ button :hover {
     text-align:center;
     color: white;
 }
-
+/*  styling for footer */
+.footer {
+    padding:0.5%;
+    margin:0;
+    max-height:20%;
+    color:rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    text-align:center;
+}
 /* styling for smaller screens */
 @media only screen and (max-width:768px){
     .navbar-item, .navbar {
