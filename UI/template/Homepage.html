@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <title> MnR home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="main">
+    <div class="navbar">
+        <div class=" navbar-link navbar-brand">
+            <a href="#">MnRTracker</a>
+        </div>
+        <div class="navbar-link navbar-brand">
+            <span style="font-size: 150%; cursor:pointer" onclick="openNav()">&#9776;</span>
+        </div>
+        <nav class="navbar-item navbar-right">
+            <div class="navbar-link">
+                <!-- About Modal trigger -->
+                <a id="Abtlink" href="#">About</a>
+            </div>
+            <div class="navbar-link">
+                <!-- Services Modal Trigger -->
+                <a id="Slink" href="#">Services</a>
+            </div>
+            <div class="navbar-link">
+                <!-- Contact us modal trigger -->
+                <a href="#footer">contact us</a>
+            </div>
+        </nav>
+    </div>
+    <div>
+        I will have my tables here
+        
+    </div>
+    <!-- start of side navigation bar -->
+    <div id="mySidenav" class="sidenav">
+        <div id="profile">
+            <img src="#" alt="avatar">profile
+        </div>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Requests</a>
+        <a href="#">summary</a>
+        <a href="#">Users</a>
+        <a href="#">Profile</a>
+        <a href="#">Logout</a>
+    </div>
+    <!-- end sidebar -->
+    <div id="footer" class="footer">
+        <p>Call us at 1112222333444</p>
+        <p>@copyright MelvinAtieno</p>
+    </div>
+    <!-- About modal -->
+    <div id="AbtModal" class="modal">
+        <!-- modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>About MnR Tracker</h2>
+            </div>
+            <div class="modal-body">
+                <p>
+                    MnR Tracker is a web app created by Melvin
+                    <br> It was created in the year 2018, with the aim
+                    <br> of making Maintenance and Repair of different parts of any company
+                    <br> easier and faster
+                    <br>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <p> @copyright MelvinAtieno </p>
+            </div>
+        </div>
+    </div>
+    <!-- Services Modal -->
+    <div id="SModal" class="modal">
+        <!-- modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id=Sclose class="close">&times;</span>
+                <h2>Services offered by MnR Tracker</h2>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Maintenance Tracker App is an application that provides users with the ability to
+                    <br> reach out to operations or repairs department regarding repair or maintenance requests
+                    <br> and monitor the status of their request.
+                    <br>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <p> @copyright MelvinAtieno </p>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="../static/JS/myjs.js"></script>
+</body>
+
+</html>
