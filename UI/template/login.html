@@ -12,18 +12,18 @@
                 <div class=" navbar-link navbar-brand">
                     <a href="#">MnRTracker</a>
                 </div>
-                <div class="navbar-link navbar-toggle">
-                    <i class=" fa fa-bars"></i>
-                </div>
             <nav class="navbar-item navbar-right">
                 <div class="navbar-link">
-                    <a href="#">About</a>
+                    <!-- About Modal trigger -->
+                    <a id ="Abtlink" href="#">About</a>
                 </div>
                 <div class="navbar-link">
-                    <a href="#">Services</a>
+                    <!-- Services Modal Trigger -->
+                    <a  id="Slink"href="#">Services</a>
                 </div>
                 <div class="navbar-link">
-                    <a href="#">contact us</a>
+                    <!-- Contact us modal trigger -->
+                    <a href="#footer">contact us</a>
                 </div>
             </nav>
         </div>
@@ -45,13 +45,56 @@
                 </div >
             </form>
             <div>
-                <p>Already have an account??
+                <p>Don't have an account??
                     <a href="signup.html">SignUp here</a>
                 </p>
             </div>
-        </div>
-        <div class="footer">
+        </div> 
+        <div id="footer" class="footer">
+            <p>Call us at 1112222333444</p>
             <p>@copyright MelvinAtieno</p>
+        </div>
+        <!-- About modal -->
+        <div id="AbtModal" class="modal">
+            <!-- modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>About MnR Tracker</h2>
+                </div>
+                <div class="modal-body">
+                    <p>
+                      MnR Tracker is a web app created by Melvin <br>
+                      It was created in the year 2018, with the aim <br>
+                      of making Maintenance and Repair of different parts of any company<br>
+                      easier and faster  <br>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <p> @copyright MelvinAtieno </p>
+                </div>
+            </div>
+        </div>
+        <!-- Services Modal -->
+        <div id="SModal" class="modal">
+            <!-- modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id=Sclose class="close">&times;</span>
+                    <h2>Services offered by MnR Tracker</h2>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Maintenance Tracker App is an application that provides users with the ability to
+                        <br> reach out to operations or repairs department regarding repair or maintenance requests
+                        <br> and monitor the status of their request.
+                        <br>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <p> @copyright MelvinAtieno </p>
+                </div>
+            </div>
         </div>
         <script src="../static/JS/myjs.js"></script>
     </body>
