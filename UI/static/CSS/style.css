@@ -190,6 +190,7 @@ button :hover {
     padding:2px 16px;
 }
 .modal-footer{
+    text-align:center;
     padding: 2px 16px;
     background-color: #888;
     color:#000;
