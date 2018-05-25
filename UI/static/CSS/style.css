@@ -81,7 +81,7 @@ form .form-group {
     max-width:50%;
     /* margin-left:30%; */
 }
-button {
+form button {
     background-color: #000000;
     color:#ccc;
     padding:2% 4%;
@@ -92,7 +92,7 @@ button {
     /* float:right; */
     font-size: 120%;
 }
-button :hover {
+form button :hover {
     background-color: #000000;
 }
 .section p {
@@ -209,7 +209,7 @@ button :hover {
   position:fixed;
   top:0;
   left:0;
-  background-color:#000000 ;
+  background-color:#333;
   overflow-x: hidden;
   transition:0.5s;
   padding-top:5%;
@@ -217,10 +217,11 @@ button :hover {
 }
 
 .sidenav a {
-    margin-top: 20%;
-    padding: 8px 8px 8px 32px;
+    margin-top: 10%;
+    margin-left:10%;
+    padding: 8px 8px 8px 10px;
     text-decoration:none;
-    font-size:140%;
+    font-size:100%;
     color:#fefefe;
     display:block;
     transition:0.3s;
@@ -233,16 +234,50 @@ button :hover {
     position:absolute;
     top:0;
     right:25px;
-    font-size:36px;
+    font-size:26px;
     margin-left:50px;
 }
-/* stlyling for rest of the page */
-#main {
-    /* transition: margin-left 0.5s; */
-    /* padding:16px; */
+.active{
+    background-color: #888;
 }
+#avatar {
+    /* margin-left:20%; */
+    max-height:80px;
+    max-width:200px;
+    width:100px;
+    border-radius: 34px;
+}
+#profile {
+    text-align:right;
+}
+
 /* sidenav on small screens */
 @media screen and (max-height: 450px){
     .sidenav {padding-top:15px;}
     .sidenav a {font-size:18px;}
 }
+
+/* dashboard styling */
+.section .container {
+    align-content: space-around;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap:wrap;
+}
+.section .container button {
+    flex-grow:1;
+    padding:5% 2%;
+    margin:20px;
+    color:#ffffff;
+    font-size: 220%;
+}
+
+.Crequests {
+    background-color: rgb(92, 2, 2);
+}
+.Prequests{
+    background-color:  rgb(153, 45, 6);
+ } 
+.Rrequests {
+    background-color:rgb(2, 56, 2);
+} 
