@@ -1,0 +1,354 @@
+<html>
+
+<head>
+    <title> MnR home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="main">
+        <div class="navbar">
+            <div class=" navbar-link navbar-brand">
+                <a href="#">MnRTracker</a>
+            </div>
+            <div class="navbar-link navbar-brand">
+                <span style="font-size: 150%; cursor:pointer" onclick="openNav()">&#9776;</span>
+            </div>
+            <nav class="navbar-item navbar-right">
+                <div class="navbar-link">
+                    <!-- About Modal trigger -->
+                    <a id="Abtlink" href="#">About</a>
+                </div>
+                <div class="navbar-link">
+                    <!-- Services Modal Trigger -->
+                    <a id="Slink" href="#">Services</a>
+                </div>
+                <div class="navbar-link">
+                    <!-- Contact us modal trigger -->
+                    <a href="#footer">contact us</a>
+                </div>
+            </nav>
+        </div>
+        <div class="section">
+            <!-- search filter -->
+            <!-- requests table -->
+            <div>
+                <table id="myTable">
+                    <p id="tableheading"> Requests </p>
+                    <tr class="header">
+                        <th>Request Id</th>
+                        <th>Date Created</th>
+                        <th>User</th>
+                        <th>Category</th>
+                        <th>Descrition</th>
+                        <th>Response</th>
+                        <th>Status</th>
+                        <th>Resolve</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>#1</td>
+                        <td>11/4/2018</td>
+                        <td>Brian Aruta</td>
+                        <!-- add selectbox -->
+                        <td>Maintainance</td>
+                        <td>Office coffee machine</td>
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- add button to show status -->1
+                        <td><button id="completed">Completed</button></td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <td>11/4/2018</td>
+                        <td>Lilian</td>
+                        <!-- add selectbox -->
+                        <td>Maintainance</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td><button id="completed">Completed</button></td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#3</td>
+                        <td>11/4/2018</td>
+                        <td>pauline</td>
+                        <!-- add selectbox -->
+                        <td>Repair</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td><button id="cancelled">Cancelled</button></td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#4</td>
+                        <td>11/4/2018</td>
+                        <td>Kevin</td>
+                        <!-- add selectbox -->
+                        <td>Maintainance</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td><button id="pending">Pending</button></td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#5</td>
+                        <td>11/4/2018</td>
+                        <td>Lilian</td>
+                        <!-- add selectbox -->
+                        <td>Repair</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td><button id="completed">Completed</button></td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#6</td>
+                        <td>11/4/2018</td>
+                        <td>Dennis</td>
+                        <!-- add selectbox -->
+                        <td>Maintainance</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td><button id="completed">Completed</button></td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#7</td>
+                        <td>11/4/2018</td>
+                        <td>Anne</td>
+                        <!-- add selectbox -->
+                        <td>Repair</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td><button id="completed">Completed</button></td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <input type="text" id="fInput" onkeyup="filterFunction()" placeholder="Search for request">
+                </table>
+            </div>
+            <div id="dashboard" class="container">
+                <button class="Crequests">Cancelled requests
+                    <br> 1</button>
+                <button class="Prequests">Pending requests
+                    <br> 1</button>
+                <button class="Rrequests">Completed requests
+                    <br> 5</button>
+            </div>
+            <!-- Users Table where Admin assigns requests  -->
+            
+            <!-- users table that allows admin to assign tasks -->
+        </div>
+
+        <!-- start of side navigation bar -->
+        <div id="mySidenav" class="sidenav">
+            <div>
+                <p>
+                    <img id="avatar" src="../static/images/admin.jpg" alt="avatar">profile</p>
+            </div>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a onclick="displaydashboard()" class="active" href="#">Dashboard</a>
+            <a onclick="displayrequests()" href="#">Requests</a>
+            <a onclick="displayUsers()" href="#">Users</a>
+            <a onclick="displayLogout()" href="#">Logout</a>
+        </div>
+        <!-- end sidebar -->
+        <div id="footer" class="footer">
+            <p>Call us at 1112222333444</p>
+            <p>@copyright MelvinAtieno</p>
+        </div>
+        <!-- About modal -->
+        <div id="AbtModal" class="modal">
+            <!-- modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>About MnR Tracker</h2>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        MnR Tracker is a web app created by Melvin
+                        <br> It was created in the year 2018, with the aim
+                        <br> of making Maintenance and Repair of different parts of any company
+                        <br> easier and faster
+                        <br>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <p> @copyright MelvinAtieno </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services Modal -->
+    <div id="SModal" class="modal">
+        <!-- modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id=Sclose class="close">&times;</span>
+                <h2>Services offered by MnR Tracker</h2>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Maintenance Tracker App is an application that provides users with the ability to
+                    <br> reach out to operations or repairs department regarding repair or maintenance requests
+                    <br> and monitor the status of their request.
+                    <br>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <p> @copyright MelvinAtieno </p>
+            </div>
+        </div>
+    </div>
+    <!-- end of serviecs modal -->
+
+    <!--start logout modal -->
+    <div id="LModal" class="modal">
+        <!-- modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="color:black" id=Lclose class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>logout?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" value="submit"> <a href="login.html">LogOut</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- end of logout modal -->
+
+    <script src="../static/JS/myjs.js"></script>
+</body>
+
+</html>
