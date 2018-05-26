@@ -353,3 +353,18 @@ form button :hover {
      text-decoration: none;
      font-size: 110%;
  }
+#completed{
+    border-radius:10px;
+    color:#ffffff;
+    background-color: rgb(4, 110, 4);
+} 
+#pending{
+    border-radius:10px;
+    color:#ffffff;
+    background-color: rgb(255, 141, 34);
+}
+#cancelled {
+    color:#ffffff;
+    background-color:rgb(170, 2, 2);
+    border-radius:10px;
+}
