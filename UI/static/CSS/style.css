@@ -287,14 +287,13 @@ form button :hover {
 }
  /*Table styling  */
  #myTable {
-     margin: 20px 10px 10px 10px;
+     overflow: scroll;
+     margin: 2% 2% 1% 1%;
      border-collapse: collapse;
      width: 100%;
      font-size: 110%;
      background-color: #888;
      border-spacing:0;
-     margin-left:2%;
-     margin-bottom: 4px;
 
  }
  #myTable th, #myTable td {
@@ -320,4 +319,12 @@ form button :hover {
  }
  #dashboard {
      display:flex;
+ }
+ #fInput{
+     width:50%;
+     font-size:120%;
+     padding:2%;
+     border:2px solid #888;
+     margin: 12px;
+     border-radius:2%;
  }
