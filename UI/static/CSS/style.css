@@ -1,5 +1,6 @@
 
 body {
+    border:2px solid #333;
     margin:2px;
 }
 /* Navigation bar styling */
@@ -203,6 +204,7 @@ form button :hover {
 /* styling for side navigation */
 
 .sidenav {
+  border:2px solid #333;
   margin:0;
   height:100%;
   width: 0;
@@ -246,6 +248,7 @@ form button :hover {
     max-width:200px;
     width:100px;
     border-radius: 34px;
+    margin-top: 0;
 }
 #profile {
     text-align:right;
@@ -267,10 +270,10 @@ form button :hover {
 .container button {
     flex-grow:1;
     padding:5% 2%;
-    margin:20px;
+    /* margin:20px; */
     color:#ffffff;
     font-size: 220%;
-    border-radius: 200px;
+    /* border-radius: 200px; */
 }
 
 .Crequests {
@@ -321,10 +324,10 @@ form button :hover {
      display:flex;
  }
  #fInput{
-     width:50%;
+     width:100%;
      font-size:120%;
-     padding:2%;
+     padding:1%;
      border:2px solid #888;
-     margin: 12px;
+     /* margin: 12px; */
      border-radius:2%;
  }
