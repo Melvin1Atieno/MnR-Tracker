@@ -33,12 +33,185 @@
             </nav>
         </div>
         <div class="section">
-            <div class="container">
-                    <button class="Crequests">Cancelled requests <br> 0</button>
-                    <button class="Prequests">Pending requests <br> 1</button>
-                    <button class="Rrequests">Completed requests <br> 7</button>
+            <!-- requests table -->
+            <div>
+                <table id="myTable">
+                    <p id="tableheading"> Requests </p>
+                    <tr class="header">
+                        <th>Request Id</th>
+                        <th>Date Created</th>
+                        <th>User</th>
+                        <th>Category</th>
+                        <th>Descrition</th>
+                        <th>Response</th>
+                        <th>Status</th>
+                        <th>Resolve</th>
+                    </tr>
+                    <tr>
+                        <td>#1</td>
+                        <td>11/4/2018</td>
+                        <td>Brian Aruta</td>
+                        <!-- add selectbox -->
+                        <td>Maintainance</td>
+                        <td>Office coffee machine</td>
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- add button to show status -->
+                        <td>completed</td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <td>11/4/2018</td>
+                        <td>Lilian</td>
+                        <!-- add selectbox -->
+                        <td>Maintainance</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td>completed</td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#3</td>
+                        <td>11/4/2018</td>
+                        <td>pauline</td>
+                        <!-- add selectbox -->
+                        <td>Repair</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td>completed</td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#4</td>
+                        <td>11/4/2018</td>
+                        <td>Kevin</td>
+                        <!-- add selectbox -->
+                        <td>Maintainance</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td>completed</td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#5</td>
+                        <td>11/4/2018</td>
+                        <td>Lilian</td>
+                        <!-- add selectbox -->
+                        <td>Repair</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td>completed</td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#6</td>
+                        <td>11/4/2018</td>
+                        <td>Dennis</td>
+                        <!-- add selectbox -->
+                        <td>Maintainance</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td>completed</td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#7</td>
+                        <td>11/4/2018</td>
+                        <td>Anne</td>
+                        <!-- add selectbox -->
+                        <td>Repair</td>
+                        <td>Office coffee machine</td>
+                        <!-- add button to show status -->
+                        <td>
+                            <select name="Response">
+                                <option> Approve</option>
+                                <option> Reject</option>
+                            </select>
+                        </td>
+                        <!-- button to show status -->
+                        <td>completed</td>
+                        <!-- add select button to resolve -->
+                        <td>
+                            <input type="checkbox" name="Resolved">Resolved
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="dashboard" class="container">
+                <button class="Crequests">Cancelled requests
+                    <br> 0</button>
+                <button class="Prequests">Pending requests
+                    <br> 1</button>
+                <button class="Rrequests">Completed requests
+                    <br> 7</button>
             </div>
         </div>
+
         <!-- start of side navigation bar -->
         <div id="mySidenav" class="sidenav">
             <div>
@@ -46,9 +219,8 @@
                     <img id="avatar" src="../static/images/admin.jpg" alt="avatar">profile</p>
             </div>
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a class="active" href="#">Dashboard</a>
-            <a href="#">Requests</a>
-            <a href="#">summary</a>
+            <a onclick="displaydashboard()" class="active" href="#">Dashboard</a>
+            <a onclick="displayrequests()" href="#">Requests</a>
             <a href="#">Users</a>
             <a href="#">Profile</a>
             <a href="#">Logout</a>
@@ -102,6 +274,7 @@
             </div>
         </div>
     </div>
+
     <script src="../static/JS/myjs.js"></script>
 </body>
 

@@ -54,3 +54,18 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
 }
+
+// function to display requests
+function displayrequests() {
+    // document.getElementById("requests").style.display="block";
+    document.getElementById("myTable").style.display = "block";
+    document.getElementById("tableheading").style.display = "block";
+    document.getElementById("dashboard").style.display="none";
+}
+function displaydashboard(){
+    document.getElementById("dashboard").style.display="flex";
+    // document.getElementById("requests").style.display = "none";
+    document.getElementById("myTable").style.display = "none";
+    // document.getElementById("tableheading").style.display = "none";
+
+}
