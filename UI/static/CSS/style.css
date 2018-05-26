@@ -1,7 +1,6 @@
 
 body {
-    border:2px solid #333;
-    margin:2px;
+    margin:0;
 }
 /* Navigation bar styling */
 .navbar {
@@ -67,7 +66,6 @@ form {
     margin-left:30%;
 }
 form .form-group label {
-    /* display:inline-block; */
     margin:5% auto;
     color: #cccccc;
     font-size: 250%;
@@ -80,7 +78,6 @@ form .form-group {
     border-radius: 5px;
     padding:20px 20px;
     max-width:50%;
-    /* margin-left:30%; */
 }
 form button {
     background-color: #000000;
@@ -90,7 +87,6 @@ form button {
     border:none;
     border-radius:4px;
     cursor:pointer;
-    /* float:right; */
     font-size: 120%;
 }
 form button :hover {
@@ -114,7 +110,6 @@ form button :hover {
     .navbar {
         display: block;
         padding:10px;
-        /* justify-content:center; */
     }
     .navbar-item{
         margin-top:2%;
@@ -243,7 +238,6 @@ form button :hover {
     background-color: #888;
 }
 #avatar {
-    /* margin-left:20%; */
     max-height:80px;
     max-width:200px;
     width:100px;
@@ -270,10 +264,8 @@ form button :hover {
 .container button {
     flex-grow:1;
     padding:5% 2%;
-    /* margin:20px; */
     color:#ffffff;
     font-size: 220%;
-    /* border-radius: 200px; */
 }
 
 .Crequests {
@@ -301,7 +293,6 @@ form button :hover {
  }
  #myTable th, #myTable td {
      text-align:left;
-     /* text-align:center; */
      padding: 12px;
      border-right:2px solid #111111;
      margin:2%;
@@ -328,6 +319,5 @@ form button :hover {
      font-size:120%;
      padding:1%;
      border:2px solid #888;
-     /* margin: 12px; */
      border-radius:2%;
  }
