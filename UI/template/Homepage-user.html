@@ -33,6 +33,87 @@
             </nav>
         </div>
         <div class="section">
+            <div>
+                <table id="uTable">
+                    <p id="tableheading"> My requests</p>
+                    <tr class="header">
+                        <th>Request Id</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Date created</th>
+                        <th>status</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>#1</td>
+                        <td>Repair</td>
+                        <td>office laptop</td>
+                        <td>19/4/2018</td>
+                        <td>
+                            <button id="completed">Completed</button>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+            
+                    </tr>
+                    <tr>
+                        <td>#1</td>
+                        <td>Repair</td>
+                        <td>office laptop</td>
+                        <td>19/4/2018</td>
+                        <td>
+                            <button id="pending">Pending</button>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+            
+                    </tr>
+                    <tr>
+                        <td>#1</td>
+                        <td>Repair</td>
+                        <td>office laptop</td>
+                        <td>19/4/2018</td>
+                        <td>
+                            <button id="cancelled">cancelled</button>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+            
+                    </tr>
+                    <tr>
+                        <td>#1</td>
+                        <td>Repair</td>
+                        <td>office laptop</td>
+                        <td>19/4/2018</td>
+                        <td>
+                            <button id="completed">Completed</button>
+                        </td>
+                        <td>
+                            <select name="Action">Action
+                                <option> View</option>
+                                <option> Update</option>
+                                <option> Delete</option>
+                            </select>
+                        </td>
+            
+                    </tr>
+                </table>
+            </div>
             <div id="makeRequest">
                 <form action="">
                     <div class=" form-group form-header">
@@ -64,9 +145,9 @@
                     <img id="avatar" src="../static/images/admin.jpg" alt="avatar">profile</p>
             </div>
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a  href="#">My Requests</a>
-            <a class="active" onclick="makeRequest()" href="#">Create Request</a>
-            <a onclick="displayLogout()"href="#">Logout</a>
+            <a onclick="displayMyRequest()" class="active" href="#">My Requests</a>
+            <a onclick="makeRequest()"     href="#">Create Request</a>
+            <a onclick="displayLogout()"   href="#">Logout</a>
         </div>
         <!-- end sidebar -->
         <div id="footer" class="footer">
