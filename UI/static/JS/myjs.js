@@ -57,18 +57,20 @@ function closeNav() {
 
 // function to display requests
 function displayrequests() {
-    // document.getElementById("requests").style.display="block";
+    // document.getElementById("userTable").style.display = "none";
     document.getElementById("myTable").style.display = "block";
     document.getElementById("tableheading").style.display = "block";
     document.getElementById("dashboard").style.display="none";
 }
+// function to display dashboard
 function displaydashboard(){
     document.getElementById("dashboard").style.display="flex";
-    // document.getElementById("requests").style.display = "none";
+    // document.getElementById("userTable").style.display = "none";
     document.getElementById("myTable").style.display = "none";
     // document.getElementById("tableheading").style.display = "none";
 
 }
+// filter search function
 
 function filterFunction() {
     var input, filter, table, tr,td, i;
@@ -90,4 +92,21 @@ function filterFunction() {
             
         }
     }
+}
+
+// function to display users
+// function displayUsers(){
+//     document.getElementById("userTable").style.display="block";
+//     document.getElementById("myTable").style.display = "none";
+//     document.getElementById("dashboard").style.display = "none";
+
+// }
+// function to display logout modal
+// get modal
+var Lmodal = document.getElementById("LModal");
+function displayLogout(){
+    Lmodal.style.display="block";
+}
+span[2].onclick = function() {
+  Lmodal.style.display = "none";
 }

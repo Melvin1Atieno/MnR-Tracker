@@ -262,6 +262,9 @@
                 <button class="Rrequests">Completed requests
                     <br> 7</button>
             </div>
+            <!-- Users Table where Admin assigns requests  -->
+            
+            <!-- users table that allows admin to assign tasks -->
         </div>
 
         <!-- start of side navigation bar -->
@@ -273,9 +276,8 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a onclick="displaydashboard()" class="active" href="#">Dashboard</a>
             <a onclick="displayrequests()" href="#">Requests</a>
-            <a href="#">Users</a>
-            <a href="#">Profile</a>
-            <a href="#">Logout</a>
+            <a onclick="displayUsers()" href="#">Users</a>
+            <a onclick="displayLogout()" href="login.html">Logout</a>
         </div>
         <!-- end sidebar -->
         <div id="footer" class="footer">
@@ -326,6 +328,25 @@
             </div>
         </div>
     </div>
+    <!-- end of serviecs modal -->
+
+    <!--start logout modal -->
+    <div id="LModal" class="modal">
+        <!-- modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="color:black" id=Lclose class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>logout?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" value="submit">LogOut</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- end of logout modal -->
 
     <script src="../static/JS/myjs.js"></script>
 </body>
