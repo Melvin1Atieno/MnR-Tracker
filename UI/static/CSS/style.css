@@ -282,16 +282,19 @@ form button :hover {
 }
  /*requests table*/
  #myTable {
+     max-height: 80%;
      overflow: scroll;
      margin: 2% 2% 1% 1%;
      border-collapse: collapse;
-     width: 100%;
+     width: auto;
      font-size: 110%;
      background-color: #888;
+     /* box-sizing:border-box; */
      border-spacing:0;
 
  }
  #myTable th, #myTable td {
+     resize:both;
      text-align:left;
      padding: 12px;
      border-right:2px solid #111111;
@@ -318,21 +321,16 @@ form button :hover {
     overflow: scroll;
     border-collapse:collapse;
     background-color: #888;
-    margin:2% 2% 1% 1%;
-    width:100%;
+    margin:0 2% 1% 1%;
+    width:auto;
         }
 #uTable td, th{
     text-align:center;
     padding:12px;
     border:2px solid #111111;
-    margin:2%;
+    margin:auto;
+    width:100%;
 }
-/* #uHTable p { */
-    /* color:#ffffff; */
-    /* font-size:120%; */
-    /* margin:0; */
-    /* padding:2%; */
-/* } */
  #dashboard {
      display:flex;
  }
@@ -395,7 +393,8 @@ form button :hover {
     display:none;
 }
 #makeRequest form {
-    margin-left:0;
+    width:100%;
+    margin:auto;
     background-color: #888;
 }
 #makeRequest form .form-header{
@@ -408,4 +407,10 @@ form button :hover {
 #makeRequest form button{
     margin-left:80%;
 }
-/* users requests table */
+#makeRequest form .form-group{
+    margin:auto;
+}
+#makeRequest form .form-control{
+    width:100%;
+    resize:vertical;
+}

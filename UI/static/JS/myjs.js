@@ -113,14 +113,11 @@ span[2].onclick = function() {
 
 // function to display user create request form
  function makeRequest(){
-     document.getElementById("uHTable").style.display="none";
      document.getElementById("uTable").style.display = "none";
      document.getElementById('makeRequest').style.display="block";
      
  }
  function displayMyRequest(){
      document.getElementById("makeRequest").style.display = "none";
-     document.getElementById("uHTable").style.display = "block";
      document.getElementById("uTable").style.display="block";
-     document.getElementById("uTable").style.width = "100%";
  }
