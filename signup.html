@@ -10,22 +10,28 @@
 </head>
 
 <body>
-    <div class="navbar">
+    <div id="landingpage" class="navbar">
         <div class=" navbar-link navbar-brand">
             <a href="#">MnRTracker</a>
         </div>
         <nav class="navbar-item navbar-right">
             <div class="navbar-link">
-                <!-- About modal trigger -->
-                <a id="Abtlink" href="#">About</a>
+                <!-- About Modal trigger -->
+                <a id="Abtlink" href="#">
+                    <i class="fa fa-info-circle"></i>About
+                </a>
             </div>
             <div class="navbar-link">
-                <!-- Services modal trigger -->
-                <a id="Slink" href="#">Services</a>
+                <!-- Services Modal Trigger -->
+                <a id="Slink" href="#">
+                    <i class="fa fa-gears"></i>Services
+                </a>
             </div>
             <div class="navbar-link">
                 <!-- Contact us modal trigger -->
-                <a href="#footer">contact us</a>
+                <a href="#footer">
+                    <i class="fa fa-phone"></i>contact us
+                </a>
             </div>
         </nav>
     </div>
@@ -33,6 +39,11 @@
         <form action="">
             <div class=" form-group form-header">
                 <h3>SIGN UP</h3>
+                <hr>
+            </div>
+            <div class="form-group">
+                <label for="username">Preferred Username: </label>
+                <input class="form-control" type="texr" name="username" placeholder="Enter your preferred username...." required>
             </div>
             <div class="form-group">
                 <label for="email">Email: </label>
@@ -43,7 +54,7 @@
                 <input class="form-control" type="password" id="password" name="password" placeholder="Enter password...." required>
             </div>
             <div class="form-group">
-                <button type="submit" value="submit">Submit</button>
+                <button title="click to register"type="submit" value="submit">Submit</button>
             </div>
         </form>
         <div>
@@ -52,8 +63,26 @@
             </p>
         </div>
     </div>
-    <div class="footer">
-        <p>Call us 1112222333444</p>
+    <div id="footer" class="footer">
+        <div class="social">
+            <a href="#">
+                <i class="fa fa-twitter">Twitter</i>
+            </a>
+            <a href="#">
+                <i class="fa fa-facebook">Facebook</i>
+            </a>
+            <a href="#">
+                <i class="fa fa-instagram">Instagram</i>
+            </a>
+        </div>
+        <div class="physical">
+            <i class="fa fa-home">Lumumba Drive Nairobu kenya</i>
+        </div>
+        <div class="address">
+            <p>
+                <i class="fa fa-phone">1112222333444</i>
+            </p>
+        </div>
         <p>@copyright MelvinAtieno</p>
     </div>
     <!-- About modal -->
