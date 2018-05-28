@@ -1,4 +1,5 @@
 body {
+    background-color: #000000;
     margin:0;
 }
 /* landing page */
@@ -144,7 +145,7 @@ form .form-group label {
 
 }
 form button {
-    background-color: rgb(255, 166, 0);
+    background-color: #ffa600;
     color:#ffffff;
     padding:2% 4%;
     margin-left:40%;
@@ -267,8 +268,8 @@ form button {
 .modal-footer{
     text-align:center;
     padding: 2px 16px;
-    background-color: #888;
-    color:#000;
+    background-color: #000000;
+    color:#ffffff;
 }
 
 /* styling for side navigation */
@@ -281,7 +282,7 @@ form button {
   position:fixed;
   top:0;
   left:0;
-  background-color:#333;
+  background-color:#be7e06;
   overflow-x: hidden;
   transition:0.5s;
   padding-top:5%;
@@ -358,13 +359,12 @@ form button {
  /*requests table*/
  #myTable {
      max-height: 80%;
-     overflow: scroll;
+     overflow: hidden;
      margin: 2% 2% 1% 1%;
      border-collapse: collapse;
      width: auto;
      font-size: 110%;
-     background-color: #888;
-     /* box-sizing:border-box; */
+     box-sizing:border-box;
      border-spacing:0;
 
  }
@@ -372,8 +372,9 @@ form button {
      resize:both;
      text-align:left;
      padding: 12px;
-     border-right:2px solid #111111;
+     border-right:2px solid #ff9100;
      margin:2%;
+     color:#ffffff;
  }
 
  #myTable tr {
@@ -390,24 +391,30 @@ form button {
     display:none;
 }
 #uTable{
-    display:block;
+    overflow: hidden;
+    height:auto;
+    margin: 2% 2% 1% 1%;
     border-spacing: 0;
     font-size: 110%;
-    overflow: scroll;
     border-collapse:collapse;
-    background-color: #888;
-    margin:0 2% 1% 1%;
     width:auto;
         }
-#uTable td, th{
+#uTable th, #uTable td{
+    text-align: left;
+    resize:both;
+    color:#ffffff;
     text-align:center;
     padding:12px;
-    border:2px solid #111111;
-    margin:auto;
-    width:100%;
+    border-bottom:2px solid #ff9100;
+    border-right:2px solid #ff9100;
+    margin:2%;
 }
  #dashboard {
+     padding:2%;
      display:flex;
+ }
+ #dashboard button {
+     color:#ff9100;
  }
  #fInput{
      background-color: rgb(180, 180, 180);
@@ -441,7 +448,7 @@ form button {
  }
  #LModal button {
      float:right;
-     background-color: rgb(78, 78, 78);
+     background-color: #ffa600
  }
  #LModal button a {
      color:#ffffff;
@@ -470,7 +477,6 @@ form button {
 #makeRequest form {
     width:100%;
     margin:auto;
-    background-color: #888;
 }
 #makeRequest form .form-header{
     font-size:180%;
