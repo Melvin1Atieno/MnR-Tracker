@@ -1,59 +1,68 @@
 <!DOCTYPE html>
-<html lang="en-US" >
+<html lang="en-US">
     <head>
-        <title> Maintainance and Repair Tracker</title>
+        <title>Maintenance and Repair tracker</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../static/CSS/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div class="navbar">
-                <div class=" navbar-link navbar-brand">
-                    <a href="#">MnRTracker</a>
-                </div>
+        <div id="landingpage"  class="navbar">
+            <div class=" navbar-link navbar-brand">
+                <a href="#">MnRTracker</a>
+            </div>
             <nav class="navbar-item navbar-right">
                 <div class="navbar-link">
                     <!-- About Modal trigger -->
-                    <a id ="Abtlink" href="#">About</a>
+                    <a id="Abtlink" href="#"><i class="fa fa-info-circle"></i>About</a>
                 </div>
                 <div class="navbar-link">
                     <!-- Services Modal Trigger -->
-                    <a  id="Slink"href="#">Services</a>
+                    <a id="Slink" href="#"><i class="fa fa-gears"></ifa></i>Services</a>
                 </div>
                 <div class="navbar-link">
                     <!-- Contact us modal trigger -->
-                    <a href="#footer">contact us</a>
+                    <a href="#footer"><i class="fa fa-phone"></i>contact us</a>
                 </div>
             </nav>
         </div>
-        <div class="section">
-            <form action="">
-                <div class=" form-group form-header">
-                    <h3>LOG IN</h3>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email: </label>
-                    <input class="form-control" type="email" id="email" name="email" placeholder="Enter your Email Address...." required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password: </label>
-                    <input class= "form-control" type="password" id="password" name="password" placeholder="Enter password...." required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" value="submit">Submit</button>
-                </div >
-            </form>
-            <div>
-                <p>Don't have an account??
-                    <a href="signup.html">SignUp here</a>
-                </p>
+        <div id="wrapper">
+            <div id="leftcolumn">
+                <h3>MAINTENANCE and REPAIR TRACKER</h3>
+                <hr>
+                <p> an application that provides users with the ability to reach out to operations or repairs department regarding repair or
+                maintenance requests and monitor the status of their request.</p>
+                <hr style="width:50%">
+                <p>You make the request, watch us do the rest</p>
+                <hr style="width:25%">
+                <button><a href="signup.html"><span>JOIN NOW</span></a></button>
             </div>
-        </div> 
+            <div id="rightcolumn">
+                <img src="../static/images/blacksmith.jpg">
+            </div>
+        </div>
+        <!-- end of content area -->
+        <!-- footer -->
         <div id="footer" class="footer">
-            <p>Call us at 1112222333444</p>
+            <div class="social">
+                <a href="#"><i class="fa fa-twitter">Twitter</i></a>
+                <a href="#">
+                    <i class="fa fa-facebook">Facebook</i>
+                </a>
+                <a href="#">
+                    <i class="fa fa-instagram">Instagram</i>
+                </a>
+            </div>
+            <div class="physical">
+                <i class="fa fa-home">Lumumba Drive Nairobu kenya</i>
+            </div>
+            <div class="address">
+                <p><i class="fa fa-phone">1112222333444</i></p>
+            </div>
             <p>@copyright MelvinAtieno</p>
         </div>
+        <!-- end of footer -->
         <!-- About modal -->
         <div id="AbtModal" class="modal">
             <!-- modal content -->
@@ -64,16 +73,18 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                      MnR Tracker is a web app created by Melvin <br>
-                      It was created in the year 2018, with the aim <br>
-                      of making Maintenance and Repair of different parts of any company<br>
-                      easier and faster  <br>
+                        MnR Tracker is a web app created by Melvin
+                        <br> It was created in the year 2018, with the aim
+                        <br> of making Maintenance and Repair of different parts of any company
+                        <br> easier and faster
+                        <br>
                     </p>
                 </div>
                 <div class="modal-footer">
                     <p> @copyright MelvinAtieno </p>
                 </div>
             </div>
+        </div>
         </div>
         <!-- Services Modal -->
         <div id="SModal" class="modal">
@@ -96,7 +107,7 @@
                 </div>
             </div>
         </div>
+        <!-- end of serviecs modal -->
         <script src="../static/JS/myjs.js"></script>
     </body>
 </html>
-    
