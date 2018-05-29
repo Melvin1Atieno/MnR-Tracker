@@ -24,10 +24,9 @@ class StagingConfig(Config):
     DEBUG = True
 
 class ProductionConfig(Config):
-"""Configurations for production"""
-
-DEBUG = False
-TESTING = False
+    """Configurations for production"""
+    DEBUG = False
+    TESTING = False
 
 app_config = {
 
