@@ -49,28 +49,10 @@ body {
     background-size: cover;
     max-height: 90%;
 }
- form .form-control {
-    width:80%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:4px;
-    resize:horizontal;
-    box-sizing: border-box;
-}
-.form-header {
-    color:#ccc;
-    text-align: center;
-    font-size: 190%;
-}
 form {
-    margin-left:30%;
-}
-form .form-group label {
-    margin:5% auto;
-    color: #cccccc;
-    font-size: 250%;
-    padding: 20px 20px 20px 0;
-
+    width:80%;
+    margin:auto;
+    display:block;
 }
 form .form-group {
     display:block;
@@ -78,6 +60,24 @@ form .form-group {
     border-radius: 5px;
     padding:20px 20px;
     max-width:50%;
+        }
+form .form-control {
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    resize:horizontal; /*allows user to resize input field*/
+    box-sizing: border-box;
+}
+.form-header {
+    color:#ccc;
+    text-align: center;
+    font-size: 190%;
+}
+form .form-group label {
+    color: #cccccc;
+    font-size: 250%;
+
 }
 form button {
     background-color: #000000;
@@ -282,16 +282,19 @@ form button :hover {
 }
  /*requests table*/
  #myTable {
+     max-height: 80%;
      overflow: scroll;
      margin: 2% 2% 1% 1%;
      border-collapse: collapse;
-     width: 100%;
+     width: auto;
      font-size: 110%;
      background-color: #888;
+     /* box-sizing:border-box; */
      border-spacing:0;
 
  }
  #myTable th, #myTable td {
+     resize:both;
      text-align:left;
      padding: 12px;
      border-right:2px solid #111111;
@@ -300,17 +303,34 @@ form button :hover {
 
  #myTable tr {
      border-bottom: 2px solid #ccc;
- }
- #Tableheading{
-     display:none;
-     font-size: 180%;
-     margin:0;
-     padding:0;
- }
- /* messing around */
- #myTable{
-     display:none;
- }
+    }
+#Tableheading{
+    display:none;
+    font-size: 180%;
+    margin:0;
+    padding:0;
+    }
+    /* messing around */
+#myTable{
+    display:none;
+}
+#uTable{
+    display:block;
+    border-spacing: 0;
+    font-size: 110%;
+    overflow: scroll;
+    border-collapse:collapse;
+    background-color: #888;
+    margin:0 2% 1% 1%;
+    width:auto;
+        }
+#uTable td, th{
+    text-align:center;
+    padding:12px;
+    border:2px solid #111111;
+    margin:auto;
+    width:100%;
+}
  #dashboard {
      display:flex;
  }
@@ -367,4 +387,30 @@ form button :hover {
     color:#ffffff;
     background-color:rgb(170, 2, 2);
     border-radius:10px;
+}
+/* Make request form  */
+#makeRequest {
+    display:none;
+}
+#makeRequest form {
+    width:100%;
+    margin:auto;
+    background-color: #888;
+}
+#makeRequest form .form-header{
+    font-size:180%;
+    color:#000000;
+}
+#radio{
+    border:0;
+}
+#makeRequest form button{
+    margin-left:80%;
+}
+#makeRequest form .form-group{
+    margin:auto;
+}
+#makeRequest form .form-control{
+    width:100%;
+    resize:vertical;
 }

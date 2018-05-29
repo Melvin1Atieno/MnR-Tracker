@@ -79,7 +79,7 @@ function filterFunction() {
     table= document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
     for( i = 0; i< tr.length; i++){
-        td = tr[i].getElementByTageName("td")[0];
+        td = tr[i].getElementByTagName("td")[0];
         if(td){
             if
             (td.innerHTML.toUpperCase().indexOf(filter)> -1){
@@ -110,3 +110,14 @@ function displayLogout(){
 span[2].onclick = function() {
   Lmodal.style.display = "none";
 }
+
+// function to display user create request form
+ function makeRequest(){
+     document.getElementById("uTable").style.display = "none";
+     document.getElementById('makeRequest').style.display="block";
+     
+ }
+ function displayMyRequest(){
+     document.getElementById("makeRequest").style.display = "none";
+     document.getElementById("uTable").style.display="block";
+ }
