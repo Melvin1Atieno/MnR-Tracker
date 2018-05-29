@@ -10,7 +10,9 @@ class TestUserClass(unittest.TestCase):
 
     def test_adduser_function_adds_userto_list_users(self):
         result = self.myuser.addUser()
-        self.assertEqual(result,{"me@gmail":["melvin","password"]})
+        message = {"me@gmail":["melvin","password"]}
+        self.assertEqual(result,message)
+        
     
 if __name__ == '__main__':
     unittest.main()

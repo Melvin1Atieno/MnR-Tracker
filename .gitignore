@@ -1,0 +1,5 @@
+/API/venv
+/API/app/__pycache__
+/API/instance/__pycache__
+/API/tests/__pycache__
+/API/tests/__pycache__/test_api.cpython-36.pyc
