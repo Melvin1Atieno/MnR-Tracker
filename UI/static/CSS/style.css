@@ -1,5 +1,5 @@
 body {
-    background-color: #000000;
+    /* background-color: #000000; */
     margin:0;
 }
 /* landing page */
@@ -166,20 +166,23 @@ form button {
 }
 /*  styling for footer */
 .footer {
-    display:flex;
-    justify-content: space-between;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    /* display:flex; */
+    /* justify-content: space-between; */
     /* flex-direction:column; */
-    padding:0.5%;
+    /* padding:0.5%; */
     margin:0;
     max-height:10%;
-    color:#ffffff;
-    background-color: #000000;
-    text-align:center;
+    /* color:#ffffff; */
+    background-color:red;
+    /* text-align:center; */
 }
 .footer .social, .footer .physical, .footer .address {
     margin:0;
-    display:flex;
-    flex-direction: column;
+    /* display:flex; */
+    /* flex-direction: column; */
 }
 /* styling for smaller screens */
 @media only screen and (max-width:768px){
