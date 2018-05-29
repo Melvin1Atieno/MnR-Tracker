@@ -1,6 +1,6 @@
 
 users={}
-class User:
+class User(object):
     """user model"""
 
     def __init__(self, email,username,password):
