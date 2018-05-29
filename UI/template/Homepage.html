@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-US">
 
 <head>
     <title> MnR home</title>
@@ -11,24 +12,29 @@
 <body>
     <div id="main">
         <div class="navbar">
-            <div class=" navbar-link navbar-brand">
-                <a href="#">MnRTracker</a>
-            </div>
             <div class="navbar-link navbar-brand">
                 <span style="font-size: 150%; cursor:pointer" onclick="openNav()">&#9776;</span>
+            </div>
+            <div class=" navbar-link navbar-brand">
+                <a href="#">MnRTracker</a>
             </div>
             <nav class="navbar-item navbar-right">
                 <div class="navbar-link">
                     <!-- About Modal trigger -->
-                    <a id="Abtlink" href="#">About</a>
+                    <a id="Abtlink" href="#">
+                        <i class="fa fa-info-circle"></i>About</a>
                 </div>
                 <div class="navbar-link">
                     <!-- Services Modal Trigger -->
-                    <a id="Slink" href="#">Services</a>
+                    <a id="Slink" href="#">
+                        <i class="fa fa-gears">
+                            </ifa>
+                        </i>Services</a>
                 </div>
                 <div class="navbar-link">
                     <!-- Contact us modal trigger -->
-                    <a href="#footer">contact us</a>
+                    <a href="#footer">
+                        <i class="fa fa-phone"></i>contact us</a>
                 </div>
             </nav>
         </div>
@@ -251,15 +257,14 @@
                             </select>
                         </td>
                     </tr>
-                    <input type="text" id="fInput" onkeyup="filterFunction()" placeholder="Search for request">
                 </table>
             </div>
             <div id="dashboard" class="container">
-                <button class="Crequests">Cancelled requests
+                <button>Cancelled requests
                     <br> 1</button>
-                <button class="Prequests">Pending requests
+                <button >Pending requests
                     <br> 1</button>
-                <button class="Rrequests">Completed requests
+                <button>Completed requests
                     <br> 5</button>
             </div>
         </div>
@@ -276,9 +281,30 @@
             <a onclick="displayLogout()" href="#">Logout</a>
         </div>
         <!-- end sidebar -->
-        <div id="footer" class="footer">
-            <p>Call us at 1112222333444</p>
-            <p>@copyright MelvinAtieno</p>
+        <!-- footer -->
+        <div class="footer">
+            <div class="social">
+                <a href="#">
+                    <i class="fa fa-twitter"></i>Twitter</a>
+                <a href="#">
+                    <i class="fa fa-facebook"></i>Facebook</a>
+                <a href="#">
+                    <i class="fa fa-instagram">Instagram</i>
+                </a>
+            </div>
+            <div class="physical">
+                <a href="#">
+                    <i class="fa fa-home">Lumumba Drive Nairobu kenya</i>
+                </a>
+            </div>
+            <div class="address">
+                <a href="#">
+                    <i class="fa fa-phone">11222992882</i>
+                </a>
+            </div>
+            <div class="copyright">
+                <a>@copyright MelvinAtieno</a>
+            </div>
         </div>
         <!-- About modal -->
         <div id="AbtModal" class="modal">
