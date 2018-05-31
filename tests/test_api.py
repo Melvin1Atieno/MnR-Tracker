@@ -6,18 +6,18 @@ import json
 
 
 
-from api import create_app
+from api import app
 
-from api import RequestListAPI
+# from api import RequestListAPI
 # from api.models import User, Request
 
 
 
 class RequestsApiTestcase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app(config_name="testing")
-        
-        self.client = self.app.test_client()
+        # self.app = create_app(config_name="testing")
+        app.testing = True
+        self.client = app.test_client()
 
     def test_request_creation(self):
         """tests API can create a request"""
@@ -55,11 +55,11 @@ class RequestsApiTestcase(unittest.TestCase):
 
 
     def test_api_post_with_empty_request_title(self):
-        """test post method returns error message when no title is submitted for a request""""
+        """test post method returns error message when no title is submitted for a request"""
         response= self.client.post("/api/v1/requests", data=json.dumps(dict(request_title="",request_description="toilet flush handles broken",
         request_category="repair")), content_type="application/json")
-         response_msg = json.loads(response.data.decode("UTF-8"))
-         self.assertIn("request_title required", response_msg["message"])
+        response_msg = json.loads(response.data.decode("UTF-8"))
+        self.assertIn("request_title required", response_msg["message"])
 
 
     def test_add_empty_request_category(self):
@@ -74,7 +74,7 @@ class RequestsApiTestcase(unittest.TestCase):
     def test_api_post_with_empty_request_description_field(self):
         """tests post method posts without the description field"""
         response = self.client.post("/api/v1/business", data=json.dumps(dict(request_title="office mic",
-        request_description=" ",request_category="repair"))content_type="application/json")
+        request_description="",request_category="repair")),content_type="application/json")
         response_msg = json.loads(response.dat.decode())
         self.assertIn("Description is required", response_msg["message"])
 
