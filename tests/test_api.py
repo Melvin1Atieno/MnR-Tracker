@@ -9,7 +9,7 @@ import json
 from api import create_app
 
 from api import RequestListAPI
-from api.models import User, Request
+# from api.models import User, Request
 
 
 
@@ -23,7 +23,6 @@ class RequestsApiTestcase(unittest.TestCase):
         """tests API can create a request"""
         create = self.client.post("/api/v1/requests", data= json.dumps(dict(request_title="laptop",request_description="whiteScreen",
         request_category="repair")), content_type ="application/json")
-        print(create)
         response = json.loads(create.data.decode())
         self.assertIn("Request successfully created", response["message"])
 

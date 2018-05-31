@@ -12,6 +12,7 @@ class User:
 
 class Request:
     """Request model"""
+    
     count = 0 
 
     def __init__(self,request_title,request_description,request_category):
@@ -20,6 +21,10 @@ class Request:
         self.request_category = request_category
         self.id = Request.count
         Request.count += 1
+
+
+
+
 
 
         

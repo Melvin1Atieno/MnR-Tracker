@@ -1,6 +1,6 @@
 from flask import Flask
 
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api, Resource, reqparse, fields, marshal
 
 
 from instance.config import app_config
@@ -13,21 +13,17 @@ def create_app(config_name):
 
     api = Api(app)
     return app
-
-
-class RequestListAPI(Resource):
-    def get(self):
-        pass
     
-    def post(self):
-        pass
-
-class RequestAPI(Resource):
-    def get(self, id):
-        pass
-
-    def put(self, id):
-        pass
+    REQUESTS = []
 
 
-# api.add_resource("/MnRtracker/api/v1.0/users/requests", endpoint ="tasks")
+
+@app.route("/api/v1/requests/", methods=["GET"])
+def get_all_requests()
+"""Returns a list of all requests """
+get_request = [requests for requests in REQUESTS]
+if not get_request:
+    return jsonify ({"message":"Requests not found"}), 409
+found_request = [{"request_title":requests.request_title, "request_description":requests.request_description,
+"category":request.request_category,"id":requests.id} for requests in REQUESTS]
+return jsonify(found_request),200
