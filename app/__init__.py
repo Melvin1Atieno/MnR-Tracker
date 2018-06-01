@@ -1,4 +1,4 @@
-from flask import Flask, request,jsonify,json
+from flask import Flask, request,jsonify,json,abort,make_response
 
 from flask_restful import Api, Resource, reqparse
 
@@ -19,13 +19,6 @@ request2 = Request("window repair", "shattered glass", "maintenance")
 
 request_catalog = []
 users = {}
-request_catalog.append(request2.save_request())
-request_catalog.append(request1.save_request())
-
-parser = reqparse.RequestParser()
-parser.add_argument('request_title', required=True, type=str, help="title cannot be empty")
-parser.add_argument('request_description', required=True, type=str, help="description cannot be empty")
-parser.add_argument('request_category', required=True, type=str, help="category cannot be empty")
 
 
 class Requests(Resource):
@@ -33,25 +26,55 @@ class Requests(Resource):
 
     def get(self):
         """get all requets"""
-        return {"request_catalog":request_catalog},200
+        return jsonify({"request_catalog":request_catalog},200)
 
 
     def post(self):
         """create a request"""
-        args = parser.parse_args()
-        request = {
-            "request_title":args["request_title"],
-            "request_description":args["request_description"],
-            "request_category":args["request_category"]
-        }
-        request = Request("request_title","request_description","request_category")
-
+        # if not request.json or  "request_title" not in request.json or "request_description" not in request.json or "request_category" not in request.json:
+        #     abort(404)
+        request_title = request.json.get("request_title")
+        if request_title == "":
+            return make_response(jsonify({"error": "description cannot be empty"}),400)
+        request_description = request.json.get("request_description")
+        if request_description == "":
+            return make_response(jsonify({"error": "description cannot be empty"}),400)
+        request_category = request.json.get("request_title")
+        if request_category == "":
+            return make_response(jsonify({"error": "description cannot be empty"}),400)
+        request = Request(request_title,request_description,request_category)
         request_catalog.append(request)
 
-        return{"request":request}, 201
+        return jsonify({"request":request}),201
+
+
+
+
         
 class SingleRequest(Resource):
-    """"""
+    def get(self, id):
+
+        """Get a single request"""
+        for request_details in request_catalog:
+            for ids in request_details:
+                if ids == id:
+                    return jsonify({"request_details":request_details})
+                abort(404)
+    def put(self,id):
+        """update request details"""
+        for request_details in request_catalog:
+            for ids in request_details:
+                if ids == id:
+                    request_title = request.json.get("request_title")
+                    request_description = request.json.get("request_description")
+                    request_category = request.json.get("request_category")
+                    updated_request = Request(request_title, request_description,request_categories)
+                    request_catalog.remove(request_details)
+                    request_catalog.append(updated_request)
+                    return make_response(jsonify({"message":"updated"})200)
+                else:
+                    abort(400)
+                
 
 
 api.add_resource(Requests, '/api/v1/users/requests', endpoint = "Request")
