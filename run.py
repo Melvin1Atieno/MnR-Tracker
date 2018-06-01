@@ -1,11 +1,12 @@
 import os
 
-from api import create_app
+from instance.config import app_config
 
-config_name = os.getenv("APP_SETTINGS")
+from app import app
 
-app = create_app(config_name)
+# config_name = os.getenv("APP_SETTINGS")
 
-if __name__ = "__main__":
+# app = create_app(config_name)
 
-    app.run()
+if __name__ == "__main__":
+    app.run(debug=True)
