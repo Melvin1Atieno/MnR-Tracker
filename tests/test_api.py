@@ -2,7 +2,7 @@ import unittest
 
 import json
 
-from app.app import app
+from app import app
 
 
 
@@ -65,7 +65,7 @@ class RequestsApiTestcase(unittest.TestCase):
         self.assertEqual(create.status_code,201)
 
         change = self.client.put("/api/v1/users/requests/0/",
-        data=json.dumps(dict(title ="kitchen")), content_type=("application/json))
+        data=json.dumps(dict(title ="kitchen"), content_type=("application/json")))
         results = self.client.get("/api/v1/requests/0")
         self.assertIn(results["title"], "kitchen")
 

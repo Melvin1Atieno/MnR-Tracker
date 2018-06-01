@@ -1,6 +1,6 @@
 from flask import Flask, request,jsonify,json
 
-from flask_restful import Api, Resource
+from flask_restful import Api, Resource, reqparse
 
 # from app import models
 
@@ -18,10 +18,19 @@ request2 = Request("window repair", "shattered glass", "maintenance")
 
 
 request_catalog = []
+users = {}
 request_catalog.append(request2.save_request())
 request_catalog.append(request1.save_request())
 
+parser = reqparse.RequestParser()
+parser.add_argument('request_title', required=True, type=str, help="title cannot be empty")
+parser.add_argument('request_description', required=True, type=str, help="description cannot be empty")
+parser.add_argument('request_category', required=True, type=str, help="category cannot be empty")
+
+
 class Requests(Resource):
+
+
     def get(self):
         """get all requets"""
         return {"request_catalog":request_catalog},200
@@ -29,24 +38,18 @@ class Requests(Resource):
 
     def post(self):
         """create a request"""
-        if not request.json or "request_title" not in request.json or "request_description" not in request.json or "request_category" not in request.json:
-            abort(400)
-           
-        request_title = request.json.get("request_title")
+        args = parser.parse_args()
+        request = {
+            "request_title":args["request_title"],
+            "request_description":args["request_description"],
+            "request_category":args["request_category"]
+        }
+        request = Request("request_title","request_description","request_category")
 
-        request_description = request.json.get("request_description")
+        request_catalog.append(request)
 
-        request_category = request.json.get("request_category")
-
-        if request_title == " ":
-            return jsonify({"response" :"request title is required"})
-        if request_description == " ":
-            return jsonify({"response":"request description is required"})
-        if request_category == " ":
-            return jsonify({"response":"request category is required"})
-        new_request = Request(request_title,request_description,request_category)
-        new_request.add_request()
-        return jsonify({"request_details":request_details}), 201
+        return{"request":request}, 201
+        
 class SingleRequest(Resource):
     """"""
 
