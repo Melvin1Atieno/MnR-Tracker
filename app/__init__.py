@@ -31,8 +31,8 @@ class Requests(Resource):
 
     def post(self):
         """create a request"""
-        # if not request.json or  "request_title" not in request.json or "request_description" not in request.json or "request_category" not in request.json:
-        #     abort(404)
+        if not request.json or  "request_title" not in request.json or "request_description" not in request.json or "request_category" not in request.json:
+            abort(404)
         request_title = request.json.get("request_title")
         if request_title == "":
             return make_response(jsonify({"error": "description cannot be empty"}),400)
@@ -71,7 +71,7 @@ class SingleRequest(Resource):
                     updated_request = Request(request_title, request_description,request_categories)
                     request_catalog.remove(request_details)
                     request_catalog.append(updated_request)
-                    return make_response(jsonify({"message":"updated"})200)
+                    return make_response(jsonify({"message":"updated"}),200)
                 else:
                     abort(400)
                 
@@ -79,7 +79,6 @@ class SingleRequest(Resource):
 
 api.add_resource(Requests, '/api/v1/users/requests', endpoint = "Request")
 api.add_resource(SingleRequest, "/api/v1/users/requests/<int:id>",endpoint ="Requests" )
-
 
 
 

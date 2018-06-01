@@ -33,14 +33,15 @@ class RequestsApiTestcase(unittest.TestCase):
 
     def test_get_returns_all_requests(self):
         """test all requests are returend"""
-        create = self.client.post("/api/v1/users/requests", data=json.dumps(self.data["request"]),
+        create = self.client.post("/api/v1/users/requests/", 
+        data=json.dumps(self.data["request"]),
         content_type =("application/json")
         )
+        self.assertEqual(create.status_code,201)
         results = self.client.get("/api/v1/users/requests/")
         response = json.loads(results.data.decode())
         created_request = response[0]
         self.assertEqual(created_request["title"],"laptop")
-        self.assertEqual(create.status_code,201)
         self.assertEqual(results.status_code,200)
 
 
