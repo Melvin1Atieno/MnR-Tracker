@@ -14,13 +14,17 @@ api = Api(app)
 
 request1 = Request("laptop repair","Broken screen/keyboard","Repair")
 request2 = Request("window repair", "shattered glass", "maintenance")
-request1.to_dict()
 
+
+
+request_catalog = []
+request_catalog.append(request2.save_request())
+request_catalog.append(request1.save_request())
 
 class Requests(Resource):
     def get(self):
         """get all requets"""
-        return jsonify({"request":request1}),200
+        return {"request_catalog":request_catalog},200
 
 
     def post(self):
@@ -47,8 +51,8 @@ class SingleRequest(Resource):
     """"""
 
 
-api.add_resource(Requests, '/api/v1/requests', endpoint = "Request")
-api.add_resource(SingleRequest, "/api/v1/requests/<int:id>",endpoint ="Requests" )
+api.add_resource(Requests, '/api/v1/users/requests', endpoint = "Request")
+api.add_resource(SingleRequest, "/api/v1/users/requests/<int:id>",endpoint ="Requests" )
 
 
 
