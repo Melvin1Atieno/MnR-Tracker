@@ -23,8 +23,7 @@ class RequestsApiTestcase(unittest.TestCase):
         }
     def test_request_creation(self):
         """tests API can create a request"""
-        create = self.client.post("/api/v1/users/requests", 
-        data= json.dumps(self.data["request"]),
+        create = self.client.post("/api/v1/users/requests", json=self.data,
         content_type =("application/json")
         )
        
@@ -83,8 +82,10 @@ class RequestsApiTestcase(unittest.TestCase):
         """Addition of empty category"""
         response = self.client.post("/api/v1/users/requests", data=json.dumps(dict(request_title="office table", 
         request_description="The table stands",request_category="")),content_type=("application/json"))
+
+        print(response)
         response_msg = json.loads(response.data.decode("UTF-8"))
-        self.assertIn("category cannot be empty", response_msg["message"])
+        self.assertIn("category cannot be empty", response["message"])
 
 
 
@@ -92,8 +93,8 @@ class RequestsApiTestcase(unittest.TestCase):
         """tests post method posts without the description field"""
         response = self.client.post("/api/v1/users/requests", data=json.dumps(dict(request_title="office mic",
         request_description="",request_category="repair")),content_type=("application/json"))
-        response_msg = json.loads(response.dat.decode())
-        self.assertIn("description cannot be empty", response_msg["message"])
+        response_msg = json.loads(response.data.decode())
+        self.assertIn("description cannot be empty", response["message"])
 
 
 

@@ -9,7 +9,7 @@ install:
 
 script:
   - nosetests
-  - nosetests --with-coverage
+  - nosetests --with-coverage--cover-package=tests && coverage report
    
 on_success: change
 on_failure: always
