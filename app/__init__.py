@@ -43,7 +43,7 @@ class Requests(Resource):
             "request_category": args['request_category'],
         }
         request_catalog.append(request)
-        return jsonify({"request": request}), 201
+        return request, 201
 
 
 
