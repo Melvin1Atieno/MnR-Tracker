@@ -65,22 +65,25 @@ class RequestsApiTestcase(unittest.TestCase):
         # access an item from resource created
         myrequest = self.client.get("/api/v1/users/requests/1")
         response = myrequest.data.decode("utf-8")
-        #from nose.tools import set_trace; set_trace()
+        
         self.assertIn("whitescreen", response)
         self.assertEqual(myrequest.status_code,200)
     
-    # def test_requests_can_be_edited(self):
-    #     """test requets can be updated"""
-    #     create = self.client.post("/api/v1/users/requests/",
-    #     data=json.dumps(self.data["request"]),
-    #     content_type=("application/json")
-    #     )
-    #     self.assertEqual(create.status_code,201)
+    def test_requests_can_be_edited(self):
+        """test requets can be updated"""
+        create = self.client.post("/api/v1/users/requests",
+        data=json.dumps(self.data),
+        content_type=("application/json")
+        )
+        # self.assertEqual(create.status_code,201)
 
-    #     change = self.client.put("/api/v1/users/requests/0/",
-    #     data=json.dumps(dict(title ="kitchen"), content_type=("application/json")))
-    #     results = self.client.get("/api/v1/requests/0")
-    #     self.assertIn(results["title"], "kitchen")
+        change = self.client.put("/api/v1/users/requests/1",
+        data=json.dumps(dict(request_title ="kitchen",request_description="whitescreen",request_category="Repair")), content_type=("application/json"))
+        results = self.client.get("/api/v1/users/requests/1")
+        response_msg = json.loads(results.data.decode("UTF-8"))
+        # from nose.tools import set_trace; set_trace()
+        # self.assertEqual(results["request_title"], "kitchen")
+        self.assertEqual("kitchen", response_msg["request_title"])
 
 
     def test_api_post_with_empty_request_title(self):
