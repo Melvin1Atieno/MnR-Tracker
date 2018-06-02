@@ -45,17 +45,19 @@ class RequestsApiTestcase(unittest.TestCase):
         self.assertEqual(results.status_code,200)
 
 
-    # def test_get_method_returns_request_by_id(self):
-    #     """Test a request can be succesfully retrieved"""
+    def test_get_method_returns_request_by_id(self):
+        """Test a request can be succesfully retrieved"""
 
-    #     create = self.client.post("/api/v1/users/requests", data=json.dumps(self.data["request"]),
-    #     content_type= ("application/json"))
-        
-    #     self.assertEqual(create.status_code,201)
-    #     myrequest = self.client.get("/api/v1/users/requests/0")
-    #     response = json.loads(myrequest.data.decode())
-    #     self.assertIn("whitescreen", response["description"])
-    #     self.assertEqual(myrequest.status_code,200)
+       #create resource
+        create = self.client.post("/api/v1/users/requests", 
+        data=json.dumps(self.data),
+        content_type= ("application/json"))
+        # access an item from resource created
+        myrequest = self.client.get("/api/v1/users/requests")
+        response = myrequest.data.decode("utf-8")
+        from nose.tools import set_trace; set_trace()
+        self.assertIn("whitescreen", response)
+        self.assertEqual(myrequest.status_code,200)
     
     # def test_requests_can_be_edited(self):
     #     """test requets can be updated"""
@@ -84,7 +86,6 @@ class RequestsApiTestcase(unittest.TestCase):
     #     response = self.client.post("/api/v1/users/requests", data=json.dumps(dict(request_title="office table", 
     #     request_description="The table stands",request_category="")),content_type=("application/json"))
 
-    #     print(response)
     #     response_msg = json.loads(response.data.decode("UTF-8"))
     #     self.assertIn("category cannot be empty", response["message"])
 

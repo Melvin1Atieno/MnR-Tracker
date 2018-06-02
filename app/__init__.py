@@ -29,7 +29,7 @@ class Requests(Resource):
 
     def get(self):
         """get all requets"""
-        return {"request_catalog":request_catalog},200
+        return jsonify({"request_catalog":request_catalog}),200
 
 
 
@@ -37,7 +37,10 @@ class Requests(Resource):
         """create a request"""
 
         args = parser.parse_args()
+        #get the count of stored requests
+        count = len(request_catalog)
         request = {
+            "request_id": count+1,
             "request_title": args['request_title'],
             "request_description": args['request_description'],
             "request_category": args['request_category'],
