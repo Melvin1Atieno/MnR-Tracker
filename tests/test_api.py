@@ -19,6 +19,11 @@ class RequestsApiTestcase(unittest.TestCase):
                 "request_description":"whitescreen",
                 "request_category":"repair"
             }
+        self.user_data = {
+            "email":"example@gmail.com",
+            "password":"12345",
+            "username":"example"
+        }
         
     def test_request_creation(self):
         """tests API can create a request"""
@@ -109,9 +114,31 @@ class RequestsApiTestcase(unittest.TestCase):
         self.assertEqual("description cannot be empty", response_msg["message"]["request_description"])
 
 
+    def test_user_registration(self):
+        """Test for user registration"""
+        response = self.client.post("/api/v1/auth/register",
+        data=json.dumps(self.user_data),
+        content_type =("application/json")
+        )
+        # from nose.tools import set_trace; set_trace()
+        data = json.loads(response.data.decode())
+        self.assertEqual(data["message"],"successfully registered")
+        #from nose.tools import set_trace; set_trace()
+        self.assertEqual(response.status_code,201)
 
 
 
+# class UserClassTestcase(unittest.TestCase):
+#     def setUP(self):
+#         app.config["Testing"] = True
+#         self.client = app.test_client()
+#         self.data =  {
+            
+#             "email":"my@gmail.com",
+#             "password":"123456"
+#         }
+
+    
         
         
         if __name__ == "__main__":
