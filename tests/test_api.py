@@ -28,6 +28,16 @@ class RequestsApiTestcase(unittest.TestCase):
         #from nose.tools import set_trace; set_trace()
         self.assertEqual(create.status_code,201)
 
+    def test_add_empty_request_category(self):
+            """Addition of empty category"""
+            response = self.client.post("/api/v1/users/requests", 
+                data=json.dumps(dict(request_title="office table", 
+                request_description="The table stands"))
+                ,content_type=("application/json"))
+
+            response_msg = json.loads(response.data.decode("UTF-8"))
+            self.assertEqual("category cannot be empty", response_msg['message']['request_category'])
+
 
     def test_get_returns_all_requests(self):
         """test all requests are returend"""
@@ -50,12 +60,12 @@ class RequestsApiTestcase(unittest.TestCase):
 
        #create resource
         create = self.client.post("/api/v1/users/requests", 
-        data=json.dumps(self.data),
-        content_type= ("application/json"))
+            data=json.dumps(self.data),
+            content_type= ("application/json"))
         # access an item from resource created
         myrequest = self.client.get("/api/v1/users/requests/1")
         response = myrequest.data.decode("utf-8")
-        from nose.tools import set_trace; set_trace()
+        #from nose.tools import set_trace; set_trace()
         self.assertIn("whitescreen", response)
         self.assertEqual(myrequest.status_code,200)
     
@@ -73,31 +83,27 @@ class RequestsApiTestcase(unittest.TestCase):
     #     self.assertIn(results["title"], "kitchen")
 
 
-    # def test_api_post_with_empty_request_title(self):
-    #     """test post method returns error message when no title is submitted for a request"""
-    #     create = self.client.post("/api/v1/users/requests", data=json.dumps(dict(request_title=" ",request_description="toilet flush handles broken",
-    #     request_category="repair")), content_type="(application/json")
-    #     response_msg = json.loads(create.data.decode("UTF-8"))
-    #     self.assertIn("title cannot be empty", response_msg["message"])
+    def test_api_post_with_empty_request_title(self):
+        """test post method returns error message when no title is submitted for a request"""
+        create = self.client.post("/api/v1/users/requests",
+         data=json.dumps(dict(request_description="toilet flush handles broken",
+         request_category="repair")), 
+        content_type="(application/json")
+        response_msg = json.loads(create.data.decode("UTF-8"))
+        self.assertEqual("title cannot be empty", response_msg["message"]['request_title'])
 
 
-    # def test_add_empty_request_category(self):
-    #     """Addition of empty category"""
-    #     response = self.client.post("/api/v1/users/requests", data=json.dumps(dict(request_title="office table", 
-    #     request_description="The table stands",request_category="")),content_type=("application/json"))
-
-    #     response_msg = json.loads(response.data.decode("UTF-8"))
-    #     self.assertIn("category cannot be empty", response["message"])
+   
 
 
-
-    # def test_api_post_with_empty_request_description_field(self):
-    #     """tests post method posts without the description field"""
-    #     response = self.client.post("/api/v1/users/requests", data=json.dumps(dict(request_title="office mic",
-    #     request_description="",request_category="repair")),content_type=("application/json"))
-    #     response_msg = json.loads(response.data.decode())
-    #     print(response)
-    #     self.assertIn("description cannot be empty", response["message"])
+    def test_api_post_with_empty_request_description_field(self):
+        """tests post method posts without the description field"""
+        response = self.client.post("/api/v1/users/requests",
+         data=json.dumps(dict(request_title="office mic",
+         request_category="repair")),
+        content_type=("application/json"))
+        response_msg = json.loads(response.data.decode())
+        self.assertEqual("description cannot be empty", response_msg["message"]["request_description"])
 
 
 

@@ -14,8 +14,8 @@ api = Api(app)
 
 parser = reqparse.RequestParser()
 parser.add_argument('request_title', required=True, type=str, help="title cannot be empty")
-parser.add_argument('request_description', required=True, type=str)
-parser.add_argument('request_category', required=True)
+parser.add_argument('request_description', required=True, type=str, help="description cannot be empty")
+parser.add_argument('request_category', required=True, help="category cannot be empty")
 
 
 
@@ -58,7 +58,6 @@ class SingleRequest(Resource):
         """Get a single request"""
         for request_details in request_catalog:
             request_id = request_details.get("request_id")
-            import pdb; pdb.set_trace()
             if request_id == id:
                 return request_details,200
                 
