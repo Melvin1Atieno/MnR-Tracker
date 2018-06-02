@@ -17,6 +17,7 @@ class User:
 class Request(User):
     """Request model"""
     request_details = {}
+    request_catalog = []
 
     def __init__(self,request_title,request_description,request_category):
         self.request_title = request_title
@@ -25,5 +26,7 @@ class Request(User):
         self.request_id = request_id
 
     def save_request(self):
-        self.request_details[self.id] = [self.request_id, self.request_title, self.request_description,self.request_category]
+        self.request_details[self.id] = [self.request_id, self.request_title, 
+                                        self.request_description,self.request_category]
+        request_catalog.append(request)
     

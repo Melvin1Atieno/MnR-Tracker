@@ -29,7 +29,7 @@ class Requests(Resource):
 
     def get(self):
         """get all requets"""
-        return jsonify({"request_catalog":request_catalog}),200
+        return request_catalog,200
 
 
 
@@ -45,7 +45,9 @@ class Requests(Resource):
             "request_description": args['request_description'],
             "request_category": args['request_category'],
         }
+        
         request_catalog.append(request)
+        
         return request, 201
 
 
@@ -53,13 +55,13 @@ class Requests(Resource):
         
 class SingleRequest(Resource):
     def get(self, id):
-
         """Get a single request"""
         for request_details in request_catalog:
-            for ids in request_details:
-                if ids == id:
-                    return jsonify({"request_details":request_details})
-                abort(404)
+            request_id = request_details.get("request_id")
+            import pdb; pdb.set_trace()
+            if request_id == id:
+                return request_details,200
+                
     def put(self,id):
         """update request details"""
         for request_details in request_catalog:
@@ -78,7 +80,7 @@ class SingleRequest(Resource):
 
 
 api.add_resource(Requests, '/api/v1/users/requests', endpoint = "Requests")
-# api.add_resource(SingleRequest, "/api/v1/users/requests/<int:id>",endpoint ="Requests" )
+api.add_resource(SingleRequest, "/api/v1/users/requests/<int:id>" )
 
 
 

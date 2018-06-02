@@ -53,7 +53,7 @@ class RequestsApiTestcase(unittest.TestCase):
         data=json.dumps(self.data),
         content_type= ("application/json"))
         # access an item from resource created
-        myrequest = self.client.get("/api/v1/users/requests")
+        myrequest = self.client.get("/api/v1/users/requests/1")
         response = myrequest.data.decode("utf-8")
         from nose.tools import set_trace; set_trace()
         self.assertIn("whitescreen", response)
