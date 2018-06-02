@@ -47,6 +47,7 @@ class Requests(Resource):
         }
         
         request_catalog.append(request)
+
         
         return request, 201
 
@@ -60,26 +61,41 @@ class SingleRequest(Resource):
             request_id = request_details.get("request_id")
             if request_id == id:
                 return request_details,200
-                
+
     def put(self,id):
         """update request details"""
         for request_details in request_catalog:
-            for ids in request_details:
-                if ids == id:
-                    request_title = request.json.get("request_title")
-                    request_description = request.json.get("request_description")
-                    request_category = request.json.get("request_category")
-                    updated_request = Request(request_title, request_description,request_categories)
-                    request_catalog.remove(request_details)
-                    request_catalog.append(updated_request)
-                    return make_response(jsonify({"message":"updated"}),200)
-                else:
-                    abort(400)
+            request_id = request_details.get("request_id")
+            if request_id == id:
+                request_title = request.json.get("request_title")
+                request_description = request.json.get("request_description")
+                request_category = request.json.get("request_category")
                 
+                
+                updated_request = {
+                    "request_id": request_id,
+                    "request_title": request_title,
+                    "request_description": request_description,
+                    "request_category": request_category
+                    
+                    }
+    
+                request_catalog.remove(request_details)
+                request_catalog.append(updated_request)
+                
+                response = jsonify({"message":"request details updated"})
+                response.status_code = 200
+                # import pdb; pdb.set_trace()
+                return response
+            else:
+                abort(404)
+                
+                
+   
 
 
 api.add_resource(Requests, '/api/v1/users/requests', endpoint = "Requests")
-api.add_resource(SingleRequest, "/api/v1/users/requests/<int:id>" )
+api.add_resource(SingleRequest, "/api/v1/users/requests/<int:id>", endpoint="id" )
 
 
 
