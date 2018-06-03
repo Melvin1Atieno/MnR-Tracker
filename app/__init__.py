@@ -1,15 +1,7 @@
 from flask import Flask, request,jsonify,abort,make_response, json
-import jwt
-
-from jwt import decode, encode
-
 
 from flask_restful import Api, Resource, reqparse
 
-from app.models import encode_auth_token,decode_auth_token
-
-from app.models import Request, User
-import datetime
 
 app = Flask(__name__)
     
@@ -116,10 +108,11 @@ class RequestsAPI(Resource):
 
     def post(self):
         """create a request"""
-
+# verify user is logged in
         if logged_in:
             return {"message":"You have to login first to access resource",
                     "url":"http://127.0.0.1:5000/api/v1/users/"}
+                    # post a request
         else:
             args = parser.parse_args()
             #get the count of stored requests
