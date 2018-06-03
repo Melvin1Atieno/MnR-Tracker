@@ -30,9 +30,11 @@ parser.add_argument('request_category', required=True, help="category cannot be 
 user_details = {}
 request_catalog = []
 users = {}
+# set default login status to False
+logged_in = False
 
 
-class Users(Resource):
+class UsersRegistration(Resource):
     """ User registration resource"""
 
 
@@ -57,10 +59,41 @@ class Users(Resource):
                 post_data.get("user_username"),post_data.get("user_email"),post_data.get("user_password")
                 ]
             user_id = count + 1
-            users[user_id] = user_details
+            users[user_email] = user_details
             return {"message":"successfully registered"},201
+    
+class UserLogin(Resource):
+    """User login resource"""
 
-            
+    def post(self):
+        """login an existing user"""
+
+        #get post data
+        post_data = request.get_json()
+
+
+        #verify that user exists
+        user_email = post_data.get("user_email")
+
+        for users_details in users:
+            # import pdb; pdb.set_trace()       
+            if user_email in users_details:
+                single_user_details = users[user_email]
+                user_password = single_user_details[2]
+                entered_password = post_data.get("user_password")
+                if user_password == entered_password:
+                    logged_in = True
+                    return {"message":"successfully logged in"},200
+                logged_in = False
+                return {"message":"Password email combination incoreect try again"}, 401
+            return {"message":"email does not exist"}
+        
+
+
+
+
+
+
 
         
 
@@ -91,7 +124,6 @@ class RequestsAPI(Resource):
 
         
         return request, 201
-
 
 
         
@@ -137,8 +169,8 @@ class SingleRequestAPI(Resource):
 
 api.add_resource(RequestsAPI, '/api/v1/users/requests', endpoint = "requests")
 api.add_resource(SingleRequestAPI, "/api/v1/users/requests/<int:id>", endpoint="id" )
-api.add_resource(Users, "/api/v1/auth/register", endpoint="register")
-
+api.add_resource(UsersRegistration, "/api/v1/auth/register", endpoint="register")
+api.add_resource(UserLogin,"/api/v1/auth/login", endpoint="login")
 
 
 

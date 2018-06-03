@@ -131,25 +131,17 @@ class RequestsApiTestcase(unittest.TestCase):
         """Tests a registered user can successfully login"""
         #register the user
         create = self.client.post("/api/v1/auth/register",
-        data=json.dumps(self.user_data),
+        data=json.dumps(dict(user_name="mel",user_email="mel@gmail",user_password="12345")),
         content_type =("application/json")
         )
         #login the user
         response= self.client.post("/api/v1/auth/login",
-        data=json.dumps(dict(user_email="mel@example.com",user_password="12345")),
+        data=json.dumps(dict(user_email="mel@gmail",user_password="12345")),
         content_type=("application/json"))
         response_msg = json.loads(response.data.decode())
-        self.assertEqual(data["message"],"successfully logged in")
-        self.asserEqual(response.status_code,200)
-# class UserClassTestcase(unittest.TestCase):
-#     def setUP(self):
-#         app.config["Testing"] = True
-#         self.client = app.test_client()
-#         self.data =  {
-            
-#             "email":"my@gmail.com",
-#             "password":"123456"
-#         }
+        self.assertEqual(response_msg["message"],"successfully logged in")
+        self.assertEqual(response.status_code,200)
+
 
     
         
