@@ -25,8 +25,10 @@ class RequestsApiTestcase(unittest.TestCase):
             "username":"example"
         }
         
+        
     def test_request_creation(self):
         """tests API can create a request"""
+        logged_in = True
         create = self.client.post("/api/v1/users/requests", json=self.data,
         content_type =("application/json")
         )
@@ -35,6 +37,8 @@ class RequestsApiTestcase(unittest.TestCase):
 
     def test_add_empty_request_category(self):
             """Addition of empty category"""
+            #set login status to true
+            logged_in = True
             response = self.client.post("/api/v1/users/requests", 
                 data=json.dumps(dict(request_title="office table", 
                 request_description="The table stands"))
@@ -62,7 +66,7 @@ class RequestsApiTestcase(unittest.TestCase):
 
     def test_get_method_returns_request_by_id(self):
         """Test a request can be succesfully retrieved"""
-
+        self.client.logged_in = True
        #create resource
         create = self.client.post("/api/v1/users/requests", 
             data=json.dumps(self.data),
@@ -116,7 +120,7 @@ class RequestsApiTestcase(unittest.TestCase):
 
     def test_user_registration(self):
         """Test for user registration"""
-        response = self.client.post("/api/v1/users",
+        response = self.client.post("/api/v1/users/registration",
         data=json.dumps(self.user_data),
         content_type =("application/json")
         )
@@ -130,7 +134,7 @@ class RequestsApiTestcase(unittest.TestCase):
     def test_registered_user_login(self):
         """Tests a registered user can successfully login"""
         #register the user
-        create = self.client.post("/api/v1/users",
+        create = self.client.post("/api/v1/users/registration",
         data=json.dumps(dict(user_name="mel",user_email="mel@gmail",user_password="12345")),
         content_type =("application/json")
         )

@@ -61,7 +61,6 @@ class UsersRegistration(Resource):
             user_id = count + 1
             users[user_email] = user_details
             return {"message":"successfully registered",
-                    "message":"login link below",
                     "url":"http://127.0.0.1:5000/api/v1/users/"},201
     
 class UserLogin(Resource):
@@ -107,40 +106,39 @@ class RequestsAPI(Resource):
 
     def get(self):
         """get all requets"""
-        if logged_in == False:
+        if logged_in:
             return {"message":"You have to login first",
                     "url":"http://127.0.0.1:5000/api/v1/users/"}
-        return request_catalog,200
+        else:
+            return request_catalog,200
 
 
 
     def post(self):
         """create a request"""
 
-        if logged_in == False:
+        if logged_in:
             return {"message":"You have to login first to access resource",
                     "url":"http://127.0.0.1:5000/api/v1/users/"}
-        args = parser.parse_args()
-        #get the count of stored requests
-        count = len(request_catalog)
-        request = {
-            "request_id": count+1,
-            "request_title": args['request_title'],
-            "request_description": args['request_description'],
-            "request_category": args['request_category'],
-        }
-        
-        request_catalog.append(request)
-
-        
-        return request, 201
+        else:
+            args = parser.parse_args()
+            #get the count of stored requests
+            count = len(request_catalog)
+            request = {
+                "request_id": count+1,
+                "request_title": args['request_title'],
+                "request_description": args['request_description'],
+                "request_category": args['request_category'],
+            }
+            request_catalog.append(request)
+            return request, 201
 
 
         
 class SingleRequestAPI(Resource):
     def get(self, id):
         """Get a single request"""
-        if logged_in == False:
+        if logged_in:
             return{"message":"You have to be logged in"}
         for request_details in request_catalog:
             request_id = request_details.get("request_id")
@@ -149,35 +147,33 @@ class SingleRequestAPI(Resource):
 
     def put(self,id):
         """update request details"""
-        if logged_in == False:
+        if logged_in:
             return {"message":"You have to login first to access resource",
                      "url":"http://127.0.0.1:5000/api/v1/users/"}
-        for request_details in request_catalog:
-            request_id = request_details.get("request_id")
-            if request_id == id:
-                request_title = request.json.get("request_title")
-                request_description = request.json.get("request_description")
-                request_category = request.json.get("request_category")
-                
-                
-                updated_request = {
-                    "request_id": request_id,
-                    "request_title": request_title,
-                    "request_description": request_description,
-                    "request_category": request_category
+        else:
+            for request_details in request_catalog:
+                request_id = request_details.get("request_id")
+                if request_id == id:
+                    request_title = request.json.get("request_title")
+                    request_description = request.json.get("request_description")
+                    request_category = request.json.get("request_category")
                     
+                    updated_request = {
+                        "request_id": request_id,
+                        "request_title": request_title,
+                        "request_description": request_description,
+                        "request_category": request_category
                     }
     
-                request_catalog.remove(request_details)
-                request_catalog.append(updated_request)
+                    request_catalog.remove(request_details)
+                    request_catalog.append(updated_request)
                 
-                response = jsonify({"message":"request details updated"})
-                response.status_code = 200
-                
-                return response
-            else:
-                abort(404)
-                
+                    response = jsonify({"message":"request details updated"})
+                    response.status_code = 200
+                    return response
+                else:
+                    abort(404)
+
                 
    
 
