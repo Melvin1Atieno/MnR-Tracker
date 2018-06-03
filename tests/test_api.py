@@ -116,7 +116,7 @@ class RequestsApiTestcase(unittest.TestCase):
 
     def test_user_registration(self):
         """Test for user registration"""
-        response = self.client.post("/api/v1/auth/register",
+        response = self.client.post("/api/v1/users",
         data=json.dumps(self.user_data),
         content_type =("application/json")
         )
@@ -130,12 +130,12 @@ class RequestsApiTestcase(unittest.TestCase):
     def test_registered_user_login(self):
         """Tests a registered user can successfully login"""
         #register the user
-        create = self.client.post("/api/v1/auth/register",
+        create = self.client.post("/api/v1/users",
         data=json.dumps(dict(user_name="mel",user_email="mel@gmail",user_password="12345")),
         content_type =("application/json")
         )
         #login the user
-        response= self.client.post("/api/v1/auth/login",
+        response= self.client.post("/api/v1/users/",
         data=json.dumps(dict(user_email="mel@gmail",user_password="12345")),
         content_type=("application/json"))
         response_msg = json.loads(response.data.decode())

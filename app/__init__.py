@@ -60,7 +60,9 @@ class UsersRegistration(Resource):
                 ]
             user_id = count + 1
             users[user_email] = user_details
-            return {"message":"successfully registered"},201
+            return {"message":"successfully registered",
+                    "message":"login link below",
+                    "url":"http://127.0.0.1:5000/api/v1/users/"},201
     
 class UserLogin(Resource):
     """User login resource"""
@@ -83,10 +85,12 @@ class UserLogin(Resource):
                 entered_password = post_data.get("user_password")
                 if user_password == entered_password:
                     logged_in = True
-                    return {"message":"successfully logged in"},200
+                    return {"message":"successfully logged in",
+                             "url" : "http://127.0.0.1:5000/api/v1/users/requests",
+                             },200
                 logged_in = False
                 return {"message":"Password email combination incoreect try again"}, 401
-            return {"message":"email does not exist"}
+            return {"message":"email does not exist"}, 400
         
 
 
@@ -103,6 +107,9 @@ class RequestsAPI(Resource):
 
     def get(self):
         """get all requets"""
+        if logged_in == False:
+            return {"message":"You have to login first",
+                    "url":"http://127.0.0.1:5000/api/v1/users/"}
         return request_catalog,200
 
 
@@ -110,6 +117,9 @@ class RequestsAPI(Resource):
     def post(self):
         """create a request"""
 
+        if logged_in == False:
+            return {"message":"You have to login first to access resource",
+                    "url":"http://127.0.0.1:5000/api/v1/users/"}
         args = parser.parse_args()
         #get the count of stored requests
         count = len(request_catalog)
@@ -130,6 +140,8 @@ class RequestsAPI(Resource):
 class SingleRequestAPI(Resource):
     def get(self, id):
         """Get a single request"""
+        if logged_in == False:
+            return{"message":"You have to be logged in"}
         for request_details in request_catalog:
             request_id = request_details.get("request_id")
             if request_id == id:
@@ -137,6 +149,9 @@ class SingleRequestAPI(Resource):
 
     def put(self,id):
         """update request details"""
+        if logged_in == False:
+            return {"message":"You have to login first to access resource",
+                     "url":"http://127.0.0.1:5000/api/v1/users/"}
         for request_details in request_catalog:
             request_id = request_details.get("request_id")
             if request_id == id:
@@ -168,9 +183,9 @@ class SingleRequestAPI(Resource):
 
 
 api.add_resource(RequestsAPI, '/api/v1/users/requests', endpoint = "requests")
-api.add_resource(SingleRequestAPI, "/api/v1/users/requests/<int:id>", endpoint="id" )
-api.add_resource(UsersRegistration, "/api/v1/auth/register", endpoint="register")
-api.add_resource(UserLogin,"/api/v1/auth/login", endpoint="login")
+api.add_resource(SingleRequestAPI, "/api/v1/users/requests/<int:id>", endpoint="request" )
+api.add_resource(UsersRegistration, "/api/v1/users/registration", endpoint="users_registration")
+api.add_resource(UserLogin,"/api/v1/users/", endpoint="users_login")
 
 
 
