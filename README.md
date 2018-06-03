@@ -42,7 +42,7 @@ View demo: [click](https://melvin1atieno.github.io/MnR-Tracker)
  PUT       |/api/v1/users/requests/<int:id>   | Modify request details               |
  POST      |/api/v1/users/requests            | Logged in users can create a request |
  POST      |/api/v1/users/registration        | Handles user Rregistration           |
- PPOST     |/api/v1/users/                    | Handles users login                  |
+ POST     |/api/v1/users/                    | Handles users login                  |
 
 ### Technologies and languages
 
