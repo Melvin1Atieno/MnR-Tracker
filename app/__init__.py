@@ -1,14 +1,22 @@
 from flask import Flask, request,jsonify,abort,make_response, json
+import jwt
+
+from jwt import decode, encode
+
 
 from flask_restful import Api, Resource, reqparse
 
-# from app import models
+from app.models import encode_auth_token,decode_auth_token
 
-from app.models import Request
+from app.models import Request, User
+import datetime
 
 app = Flask(__name__)
-
+    
 api = Api(app)
+
+
+    
 
 
 
@@ -19,12 +27,45 @@ parser.add_argument('request_category', required=True, help="category cannot be 
 
 
 
-
+user_details = {}
 request_catalog = []
 users = {}
 
 
-class Requests(Resource):
+class Users(Resource):
+    """ User registration resource"""
+
+
+    def post(self):
+        """Create new user"""
+        # get the post data
+        post_data = request.get_json()
+
+
+        #checks if username already exists
+        user_username = post_data.get("user_username")
+        user_email = post_data.get("user_email")
+        if user_username in users:
+            return {"message":"username already exists"}, 400
+        elif user_email in users:
+            return {"message":"email registered under an existing account"},400
+        else:
+            # generate an id for the user 
+            count = len(users)
+             # add user to dict  of users
+            user_details= [
+                post_data.get("user_username"),post_data.get("user_email"),post_data.get("user_password")
+                ]
+            user_id = count + 1
+            users[user_id] = user_details
+            return {"message":"successfully registered"},201
+
+            
+
+        
+
+class RequestsAPI(Resource):
+    """Requests resource"""
 
 
     def get(self):
@@ -54,7 +95,7 @@ class Requests(Resource):
 
 
         
-class SingleRequest(Resource):
+class SingleRequestAPI(Resource):
     def get(self, id):
         """Get a single request"""
         for request_details in request_catalog:
@@ -85,7 +126,7 @@ class SingleRequest(Resource):
                 
                 response = jsonify({"message":"request details updated"})
                 response.status_code = 200
-                # import pdb; pdb.set_trace()
+                
                 return response
             else:
                 abort(404)
@@ -94,8 +135,9 @@ class SingleRequest(Resource):
    
 
 
-api.add_resource(Requests, '/api/v1/users/requests', endpoint = "Requests")
-api.add_resource(SingleRequest, "/api/v1/users/requests/<int:id>", endpoint="id" )
+api.add_resource(RequestsAPI, '/api/v1/users/requests', endpoint = "requests")
+api.add_resource(SingleRequestAPI, "/api/v1/users/requests/<int:id>", endpoint="id" )
+api.add_resource(Users, "/api/v1/auth/register", endpoint="register")
 
 
 

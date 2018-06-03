@@ -4,11 +4,11 @@ import os
 class Config(object):
     """Parent configurationclass."""
     
-    DEBUG = False
+    DEBUG = True
 
     CSRF_ENABLED = True
 
-    SECRET = os.getenv("SECRET")
+    SECRET_KEY = os.getenv("SECRET_KEY", "my_precious")
 
 class DevelopmentConfig(Config):
     """ configurations for Development"""
