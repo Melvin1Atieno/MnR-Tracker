@@ -12,11 +12,11 @@ Maintenance Tracker App is an application that provides users with the ability t
 
 ## The project contains designs for
 
- *_**A landing page.**_
- *_**A signup page.**_
- *_**A Login page.**_
- *_**An admin's homepage.**_
- *_**A Users homepage.**_
+ 1. _**A landing page.**_
+ 2. _**A signup page.**_
+ 3. _**A Login page.**_
+ 4. _**An admin's homepage.**_
+ 5. _**A Users homepage.**_
 
 ## Installation
 
@@ -30,31 +30,25 @@ Maintenance Tracker App is an application that provides users with the ability t
 
 View demo: [click](https://melvin1atieno.github.io/MnR-Tracker)
 
-# API
-------------------------------------------------------------------------------------------------------------------------------------------------
+### API
+--------------------------------------------------------------------------------------------------------------------------
 
-## ENDPOINTS
+### ENDPOINTS
 
  **METHOD**| **Endpoints**                    |**Functionality**
  ----------|----------------------------------|--------------------------------------|
- GET       |/api/v1/users/requests           | Fetch all requests                    |
- ----------|----------------------------------|--------------------------------------|
+ GET       |/api/v1/users/requests            | Fetch all requests                   |
  GET       |/api/v1/users/requests/<int:id>   | Fetch a single request               |
- ----------|----------------------------------|--------------------------------------|
  PUT       |/api/v1/users/requests/<int:id>   | Modify request details               |
- ----------|----------------------------------|--------------------------------------|
  POST      |/api/v1/users/requests            | Logged in users can create a request |
- ----------|----------------------------------|--------------------------------------|
  POST      |/api/v1/users/registration        | Handles user Rregistration           |
- ----------|----------------------------------|--------------------------------------|
  PPOST     |/api/v1/users/                    | Handles users login                  |
- -------------------------------------------------------------------------------------|
 
 ### Technologies and languages
 
 1. [**Project management (Agile)**](https://www.pivotaltracker.com/n/projects/2173280)
 
-2. **python**
+2. python
 
 ### Run locally
 
