@@ -127,7 +127,20 @@ class RequestsApiTestcase(unittest.TestCase):
         self.assertEqual(response.status_code,201)
 
 
-
+    def test_registered_user_login(self):
+        """Tests a registered user can successfully login"""
+        #register the user
+        create = self.client.post("/api/v1/auth/register",
+        data=json.dumps(self.user_data),
+        content_type =("application/json")
+        )
+        #login the user
+        response= self.client.post("/api/v1/auth/login",
+        data=json.dumps(dict(user_email="mel@example.com",user_password="12345")),
+        content_type=("application/json"))
+        response_msg = json.loads(response.data.decode())
+        self.assertEqual(data["message"],"successfully logged in")
+        self.asserEqual(response.status_code,200)
 # class UserClassTestcase(unittest.TestCase):
 #     def setUP(self):
 #         app.config["Testing"] = True
