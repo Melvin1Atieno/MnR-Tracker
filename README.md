@@ -1,7 +1,7 @@
 
 [![Build Status](https://travis-ci.org/Melvin1Atieno/MnR-Tracker.svg?branch=ft-user-post-requests-157931267)](https://travis-ci.org/Melvin1Atieno/MnR-Tracker)
 
-[![Coverage Status](https://coveralls.io/repos/github/Melvin1Atieno/MnR-Tracker/badge.svg?branch=ft-user-post-requests-157931267)](https://coveralls.io/github/Melvin1Atieno/MnR-Tracker?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Melvin1Atieno/MnR-Tracker/badge.svg?branch=Develop)](https://coveralls.io/github/Melvin1Atieno/MnR-Tracker?branch=Develop)
 
 # MnR-tracker
 
