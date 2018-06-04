@@ -64,7 +64,7 @@ View demo on ghpages hosted platform: [click](https://melvin1atieno.github.io/Mn
 
 create a virtual environment for the project:
 ```
-$ virtualenv --python=python3.5 virtualenv-name
+$ virtualenv --python=python3.6 virtualenv-name
 ```
 
 activate the virtual environment:

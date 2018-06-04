@@ -101,7 +101,7 @@ class RequestsAPI(Resource):
 
     def get(self):
         """get all requets"""
-        if not logged_in:
+        if logged_in:
             return {"message":"You have to login first",
                     "url":"http://127.0.0.1:5000/api/v1/users/"}
         else:
@@ -112,7 +112,7 @@ class RequestsAPI(Resource):
     def post(self):
         """create a request"""
 # verify user is logged in
-        if not logged_in:
+        if  logged_in:
             return {"message":"You have to login first to access resource",
                     "url":"http://127.0.0.1:5000/api/v1/users/"}
                     # post a request
@@ -134,7 +134,7 @@ class RequestsAPI(Resource):
 class SingleRequestAPI(Resource):
     def get(self, id):
         """Get a single request"""
-        if not logged_in:
+        if  logged_in:
             return{"message":"You have to be logged in"}
         for request_details in request_catalog:
             request_id = request_details.get("request_id")
@@ -143,7 +143,7 @@ class SingleRequestAPI(Resource):
 
     def put(self,id):
         """update request details"""
-        if not logged_in:
+        if  logged_in:
             return {"message":"You have to login first to access resource",
                      "url":"http://127.0.0.1:5000/api/v1/users/"}
         else:
