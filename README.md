@@ -21,14 +21,22 @@ Maintenance Tracker App is an application that provides users with the ability t
 ## Installation
 
  To get your own copy of the designs or get a feel:
- 1. [_clone_]:https://github.com/Melvin1Atieno/MnR-Tracker.git.
- 2. _Git checkout_ :Develop
- 3. _cd_ UI/template/  
- 4. _run_  index.html on your favourite browser.
+clone the repo:
+```
+$ https://github.com/Melvin1Atieno/MnR-Tracker.git
+```
+
+cd into the repo:
+```
+$ /MNR-TRACKER/UI/template
+```
+
+copy the link to your favourite browser
+
 
 ## Usage
 
-View demo: [click](https://melvin1atieno.github.io/MnR-Tracker)
+View demo on ghpages hosted platform: [click](https://melvin1atieno.github.io/MnR-Tracker)
 
 ### API
 --------------------------------------------------------------------------------------------------------------------------
@@ -41,7 +49,7 @@ View demo: [click](https://melvin1atieno.github.io/MnR-Tracker)
  GET       |/api/v1/users/requests/<int:id>   | Fetch a single request               |
  PUT       |/api/v1/users/requests/<int:id>   | Modify request details               |
  POST      |/api/v1/users/requests            | Logged in users can create a request |
- POST      |/api/v1/users/registration        | Handles user Rregistration           |
+ POST      |/api/v1/users/registration        | Handles user registration           |
  POST     |/api/v1/users/                    | Handles users login                  |
 
 ### Technologies and languages
@@ -50,19 +58,34 @@ View demo: [click](https://melvin1atieno.github.io/MnR-Tracker)
 
 2. python
 
+3. flask framework
+
 ### Run locally
 
-1. [_clone_]:(https://github.com/Melvin1Atieno/MnR-Tracker)
+create a virtual environment for the project:
+```
+$ virtualenv --python=python3.5 virtualenv-name
+```
 
-2. _Git checkout_ : Develop
+activate the virtual environment:
+```
+$ source virtualenv-name/bin/activate
+```
 
-3. _pip install requirements.txt_
+use virtualenv-wrapper alternative:
+```
+$ mkvirtualenv --python=python3.5 virtualenv-name
+```
 
-4. _activate virual env, **venv**_
+to use it:
+```
+$ workon virtualenv-name
+```
 
-5. _flask run_
+remember to run ``` $ pip install -r requirements.txt``` to install libraries
 
-------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
 
 ### Acknowledgement
 

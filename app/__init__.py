@@ -79,9 +79,12 @@ class UserLogin(Resource):
                     return {"message":"successfully logged in",
                              "url" : "http://127.0.0.1:5000/api/v1/users/requests",
                              },200
-                logged_in = False
-                return {"message":"Password email combination incoreect try again"}, 401
-            return {"message":"email does not exist"}, 400
+                else:
+                    logged_in = False
+                    return {"message":"Password email combination incoreect try again"}, 401
+                import pdb; pdb.set_trace()
+            else:
+                return {"message":"email does not exist"}, 400
         
 
 
@@ -98,7 +101,7 @@ class RequestsAPI(Resource):
 
     def get(self):
         """get all requets"""
-        if logged_in:
+        if not logged_in:
             return {"message":"You have to login first",
                     "url":"http://127.0.0.1:5000/api/v1/users/"}
         else:
@@ -109,7 +112,7 @@ class RequestsAPI(Resource):
     def post(self):
         """create a request"""
 # verify user is logged in
-        if logged_in:
+        if not logged_in:
             return {"message":"You have to login first to access resource",
                     "url":"http://127.0.0.1:5000/api/v1/users/"}
                     # post a request
@@ -131,7 +134,7 @@ class RequestsAPI(Resource):
 class SingleRequestAPI(Resource):
     def get(self, id):
         """Get a single request"""
-        if logged_in:
+        if not logged_in:
             return{"message":"You have to be logged in"}
         for request_details in request_catalog:
             request_id = request_details.get("request_id")
@@ -140,7 +143,7 @@ class SingleRequestAPI(Resource):
 
     def put(self,id):
         """update request details"""
-        if logged_in:
+        if not logged_in:
             return {"message":"You have to login first to access resource",
                      "url":"http://127.0.0.1:5000/api/v1/users/"}
         else:
