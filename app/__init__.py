@@ -1,5 +1,18 @@
 from flask import Flask, request,jsonify,abort,make_response, json
 
+import uuid
+
+
+import datetime
+
+import jwt
+
+from functools import wraps
+
+from werkzeug.security import generate_password_hash, check_password_hash
+from app.models import User, Request, users_catalog,requests_catalog
+
+    
 from flask_restful import Api, Resource, reqparse
 
 
@@ -8,26 +21,43 @@ app = Flask(__name__)
 api = Api(app)
 
 
-    
 
 
+# the decorator that works with the token
+def login_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        # empty token
+        token = None
 
-parser = reqparse.RequestParser()
-parser.add_argument('request_title', required=True, type=str, help="title cannot be empty")
-parser.add_argument('request_description', required=True, type=str, help="description cannot be empty")
-parser.add_argument('request_category', required=True, help="category cannot be empty")
+        if "x-access-token" in request.headers:
+            token = request.headers["x-access-token"]
+
+        if not token:
+            return{"message" : "Login is required "},401
+        
+        try:
+            data = jwt.decode(token, "the secret secret ill use is here")
+            # get the user to whom the token belongs to
+            for users in users_catalog:
+                if data["user_id"] in users:
+                    current_user = users
+        except:
+            return{"message":"invalid token"}
+
+        return f(current_user,*args,**kwargs)
+        
+    return decorated 
 
 
-
-user_details = {}
-request_catalog = []
-users = {}
-# set default login status to False
-logged_in = False
-
-
-class UsersRegistration(Resource):
+class UserRegistration(Resource):
     """ User registration resource"""
+
+    @login_required
+    def get(self):
+        return users_catalog
+
+
 
 
     def post(self):
@@ -35,149 +65,140 @@ class UsersRegistration(Resource):
         # get the post data
         post_data = request.get_json()
 
+        # hash the password
+        hashed_password = generate_password_hash(post_data.get("password"), method="sha256")
 
-        #checks if username already exists
-        user_username = post_data.get("user_username")
-        user_email = post_data.get("user_email")
-        if user_username in users:
-            return {"message":"username already exists"}, 400
-        elif user_email in users:
-            return {"message":"email registered under an existing account"},400
-        else:
-            # generate an id for the user 
-            count = len(users)
-             # add user to dict  of users
-            user_details= [
-                post_data.get("user_username"),post_data.get("user_email"),post_data.get("user_password")
-                ]
-            user_id = count + 1
-            users[user_email] = user_details
-            return {"message":"successfully registered",
-                    "url":"http://127.0.0.1:5000/api/v1/users/"},201
-    
+        username = post_data.get("username")
+        email   = post_data.get("email")
+        password = hashed_password
+
+        if username == " ":
+            return {"message":"Username field cannot be empty"},401
+        if not username:
+            return {"message":"Username must be provided"},401
+        if not email :
+            return {"message":"Email must be provided"},401
+        if email == " ":
+            return {"message":"Email field cannot be empty"},401
+        if not post_data.get("password"):
+            return {"message":"password must be provided"},401
+        if post_data["password"] == " ":
+            return {"message":"password field cannot be empty"},401
+
+
+        # make the user an instance of the user class
+        new_user = User(username, password,email, admin=False)
+
+        
+
+        # check if user already exists
+
+        # import pdb; pdb.set_trace()
+        if len(users_catalog) > 0:
+            for users in users_catalog:
+                for ids, details in users.items():
+                    if email in details:
+                        return {"message":"Email already registered to an account"}
+                    if username in details:
+                        return {"message":"username already taken"}
+        new_user.saveUser()
+        return {"message":"New user successfully registered"},201
+
+
+
 class UserLogin(Resource):
-    """User login resource"""
+    """login a user"""
 
     def post(self):
-        """login an existing user"""
+        # get the authorization information 
+        auth = request.authorization
 
-        #get post data
+        # make sure the authorization info is complete
+        # import pdb; pdb.set_trace()
+        if not auth or not auth.username or not auth.password:
+            return make_response("could not verify", 401, {"www-authenticate":"Basic realm ='Login required'"})
+
+        # get the user
+        for users in users_catalog:
+            for ids, details in users.items():
+                if auth.username not in details:
+                    return{"message":"User does not exist"}
+                    # compare stored password with password entered
+                if check_password_hash(users[ids][0], auth.password):
+                    token = jwt.encode({"user_id":ids, "exp":datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},"the secret secret ill use is here")
+                    return {"token": token.decode("UTF-8"),"message":"successfully logged in"},200
+                return {"message":"login required"}
+    
+class Requests(Resource):
+    """get rewquest and post a request"""
+
+    @login_required
+    def get(self, current_user):
+        return requests_catalog
+
+    @login_required
+    def post(self, current_user):
         post_data = request.get_json()
 
+        title = post_data.get("title")
+        description = post_data.get("description")
+        category = post_data.get("category")
 
-        #verify that user exists
-        user_email = post_data.get("user_email")
+        myrequest = Request(title, description,category)
 
-        for users_details in users:
-            # import pdb; pdb.set_trace()       
-            if user_email in users_details:
-                single_user_details = users[user_email]
-                user_password = single_user_details[2]
-                entered_password = post_data.get("user_password")
-                if user_password == entered_password:
-                    logged_in = True
-                    return {"message":"successfully logged in",
-                             "url" : "http://127.0.0.1:5000/api/v1/users/requests",
-                             },200
-                else:
-                    logged_in = False
-                    return {"message":"Password email combination incoreect try again"}, 401
-                import pdb; pdb.set_trace()
-            else:
-                return {"message":"email does not exist"}, 400
-        
+        myrequest.saveRequest()
+
+        return{"message":"request successfully created"}
 
 
+class singleRequest(Resource):
+
+    @login_required
+    def get(self,current_user, request_id):
+        """get a single request"""
+        if request_id > len(requests_catalog):
+            return {"message":"the request does not exist"}
+        for requests in requests_catalog:
+            for ids in requests:
+                if request_id == ids:
+                    return requests
+
+    @login_required
+    def put(self,current_user, request_id):
+        """Edit a single request"""
+        if request_id > len(requests_catalog):
+            return {"message":"the request does not exist"}
+        for request_details in requests_catalog:
+            for ids in request_details:
+                if request_id == ids:
+                    post_data = request.get_json()
+                    new_title = post_data.get("title")
+                    new_description = post_data.get("description")
+                    new_category =post_data.get("category")
+                    request_details[request_id] = [new_title, new_description, new_category]
+                    return {"message":"request successfully updated"}
+
+
+    @login_required
+    def delete(self,current_user, request_id):
+        """Delete a request by id"""
+        if request_id > len(requests_catalog):
+            return {"message":"the request does not exist"}
+        for request_details in requests_catalog:
+            for ids in request_details:
+                if request_id == ids:
+                    requests_catalog.remove(request_details)
+                    return {"message":"request successfully deleted"}
 
 
 
 
 
-        
 
-class RequestsAPI(Resource):
-    """Requests resource"""
-
-
-    def get(self):
-        """get all requets"""
-        if logged_in:
-            return {"message":"You have to login first",
-                    "url":"http://127.0.0.1:5000/api/v1/users/"}
-        else:
-            return request_catalog,200
-
-
-
-    def post(self):
-        """create a request"""
-# verify user is logged in
-        if  logged_in:
-            return {"message":"You have to login first to access resource",
-                    "url":"http://127.0.0.1:5000/api/v1/users/"}
-                    # post a request
-        else:
-            args = parser.parse_args()
-            #get the count of stored requests
-            count = len(request_catalog)
-            request = {
-                "request_id": count+1,
-                "request_title": args['request_title'],
-                "request_description": args['request_description'],
-                "request_category": args['request_category'],
-            }
-            request_catalog.append(request)
-            return request, 201
-
-
-        
-class SingleRequestAPI(Resource):
-    def get(self, id):
-        """Get a single request"""
-        if  logged_in:
-            return{"message":"You have to be logged in"}
-        for request_details in request_catalog:
-            request_id = request_details.get("request_id")
-            if request_id == id:
-                return request_details,200
-
-    def put(self,id):
-        """update request details"""
-        if  logged_in:
-            return {"message":"You have to login first to access resource",
-                     "url":"http://127.0.0.1:5000/api/v1/users/"}
-        else:
-            for request_details in request_catalog:
-                request_id = request_details.get("request_id")
-                if request_id == id:
-                    request_title = request.json.get("request_title")
-                    request_description = request.json.get("request_description")
-                    request_category = request.json.get("request_category")
-                    
-                    updated_request = {
-                        "request_id": request_id,
-                        "request_title": request_title,
-                        "request_description": request_description,
-                        "request_category": request_category
-                    }
-    
-                    request_catalog.remove(request_details)
-                    request_catalog.append(updated_request)
-                
-                    response = jsonify({"message":"request details updated"})
-                    response.status_code = 200
-                    return response
-                else:
-                    abort(404)
-
-                
-   
-
-
-api.add_resource(RequestsAPI, '/api/v1/users/requests', endpoint = "requests")
-api.add_resource(SingleRequestAPI, "/api/v1/users/requests/<int:id>", endpoint="request" )
-api.add_resource(UsersRegistration, "/api/v1/users/registration", endpoint="users_registration")
-api.add_resource(UserLogin,"/api/v1/users/", endpoint="users_login")
+api.add_resource(UserLogin, "/api/v1/users/auth/login", endpoint="login")
+api.add_resource(UserRegistration, "/api/v1/users/registration", endpoint="users")
+api.add_resource(Requests,"/api/v1/requests", endpoint="requests")
+api.add_resource(singleRequest,"/api/v1/requests/<int:request_id>", endpoint="singleRequest")
 
 
 
