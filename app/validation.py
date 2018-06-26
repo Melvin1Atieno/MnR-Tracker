@@ -16,11 +16,6 @@ class UserSchema(Schema):
             raise ValidationError ("Spaces not allowed")
 
 
-    # @validates("password")
-    # def validate_fields(self,password):
-    #     if " " in password:
-    #         raise ValidationError("Spaces not allowed")
-
     
 
     
@@ -29,6 +24,6 @@ class UserSchema(Schema):
 
 class RequestSchema(Schema):
     """Validations for class Request"""
-    title = fields.String() 
-    description = fields.String()
-    category = fields.String()
+    title = fields.String(required=True) 
+    description = fields.String(required=True)
+    category = fields.String(required=True)

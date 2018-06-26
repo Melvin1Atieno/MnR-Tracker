@@ -42,11 +42,11 @@ def login_required(f):
         try:
             data = jwt.decode(token, "the secret secret ill use is here")
             # get the user to whom the token belongs to
-            for users in users_catalog:
-                if data["user_id"] in users:
+            for user in users_catalog:
+                if data["user_email"] == user["email"]:
                     current_user = users
         except:
-            return{"message":"invalid token"}
+            return{"message":"invalid token"}, 401
 
         return f(current_user,*args,**kwargs)
         
@@ -126,26 +126,32 @@ class UserLogin(Resource):
                 return{"message":"incorrect password"},401
         return{"message":"User does not exist"},401
     
-# class Requests(Resource):
-#     """get rewquest and post a request"""
+class Requests(Resource):
+    """get rewquest and post a request"""
 
-#     @login_required
-#     def get(self, current_user):
-#         return requests_catalog
+    @login_required
+    def get(self, current_user):
+        return requests_catalog
 
-#     @login_required
-#     def post(self, current_user):
-#         post_data = request.get_json()
+    @login_required
+    def post(self, current_user):
+        post_data = request.get_json()
 
-#         title = post_data.get("title")
-#         description = post_data.get("description")
-#         category = post_data.get("category")
+        schema = RequestSchema()
+        results, errors = schema.load(post_data)
+        if len(errors) > 0:
+            return (errors),400
 
-#         myrequest = Request(title, description,category)
+        title = post_data.get("title")
+        description = post_data.get("description")
+        category = post_data.get("category")
 
-#         myrequest.saveRequest()
+        myrequest = Request(title, description,category)
 
-#         return{"message":"request successfully created"}
+        requests_catalog.append({"title":myrequest.title, "description":myrequest.description, "category":myrequest.category})
+
+
+        return{"message":"request successfully created"}
 
 
 # class singleRequest(Resource):
@@ -194,7 +200,7 @@ class UserLogin(Resource):
 
 api.add_resource(UserLogin, "/api/v1/users/auth/login", endpoint="login")
 api.add_resource(UserRegistration, "/api/v1/users/registration", endpoint="users")
-# api.add_resource(Requests,"/api/v1/requests", endpoint="requests")
+api.add_resource(Requests,"/api/v1/users/auth/login/requests", endpoint="requests")
 # api.add_resource(singleRequest,"/api/v1/requests/<int:request_id>", endpoint="singleRequest")
 
 
