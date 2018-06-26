@@ -38,25 +38,27 @@ class RequestsApiTestcase(unittest.TestCase):
         self.assertEqual(create.status_code,201)
     
     
+    
+    
     def test_user_registration_without_username(self):
         """Test a user cannot successfully register without username"""
         create = self.client.post("/api/v1/users/registration",
-         data=json.dumps(dict(email="mel@gmail",password="12345")),
+         data=json.dumps(dict(email="mel@gmail.com",password="12345")),
         content_type =("application/json")
         )
         data = json.loads(create.data.decode())
-        self.assertEqual(data["message"],"Username must be provided")
-        self.assertEqual(create.status_code,401)
+        self.assertEqual(data["username"],["Missing data for required field."])
+        self.assertEqual(create.status_code,400)
 
     def test_user_registration_with_empty_username(self):
         """Test a user cannot successfully register with an empty username"""
         create = self.client.post("/api/v1/users/registration",
-         data=json.dumps(dict(username=" ",email="mel@gmail",password="12345")),
+         data=json.dumps(dict(username=" ",email="mel@gmail.com",password="12345")),
         content_type =("application/json")
         )
         data = json.loads(create.data.decode())
-        self.assertEqual(data["message"],"Username field cannot be empty")
-        self.assertEqual(create.status_code,401)
+        self.assertEqual(data["username"],["Spaces not allowed"])
+        self.assertEqual(create.status_code,400)
 
     def test_user_registration_without_email(self):
         """Test a user cannot successfully register without providing an email"""
@@ -65,8 +67,8 @@ class RequestsApiTestcase(unittest.TestCase):
         content_type =("application/json")
         )
         data = json.loads(create.data.decode())
-        self.assertEqual(data["message"],"Email must be provided")
-        self.assertEqual(create.status_code,401)
+        self.assertEqual(data["email"],["Missing data for required field."])
+        self.assertEqual(create.status_code,400)
 
     def test_user_registration_with_empty_email(self):
         """Test a user cannot successfully register with an empty email"""
@@ -75,45 +77,46 @@ class RequestsApiTestcase(unittest.TestCase):
         content_type =("application/json")
         )
         data = json.loads(create.data.decode())
-        self.assertEqual(data["message"],"Email field cannot be empty")
-        self.assertEqual(create.status_code,401)
+        self.assertEqual(data["email"],["Not a valid email address."])
+        self.assertEqual(create.status_code,400)
 
     def test_user_registration_without_password(self):
         """Test a user cannot successfully register without a password"""
         create = self.client.post("/api/v1/users/registration",
-         data=json.dumps(dict(email="mel@gmail",username="12345")),
+         data=json.dumps(dict(username="12345",email="mel@gmail.com")),
         content_type =("application/json")
         )
         data = json.loads(create.data.decode())
-        self.assertEqual(data["message"],"password must be provided")
-        self.assertEqual(create.status_code,401)
+        self.assertEqual(data["password"],["Missing data for required field."])
+        self.assertEqual(create.status_code,400)
 
     def test_user_registration_with_empty_password(self):
         """Test a user cannot successfully register with an empty password"""
         create = self.client.post("/api/v1/users/registration",
-         data=json.dumps(dict(email="mel@gmail",password=" ",username="12345")),
+         data=json.dumps(dict(username="welvin", email="wel@gmail.com",password="  ")),
         content_type =("application/json")
         )
         data = json.loads(create.data.decode())
-        self.assertEqual(data["message"],"password field cannot be empty")
-        self.assertEqual(create.status_code,401)
+        self.assertEqual(data["message"],"Spaces not allowed")
+        self.assertEqual(create.status_code,400)
         
         
     def test_registered_user_login(self):
         """Tests a registered user can successfully login"""
         #register the user
         create = self.client.post("/api/v1/users/registration",
-         data=json.dumps(dict(email="mel@gmail",password="1234",username="melvin")),
-        content_type =("application/json")
+           data=json.dumps(dict(email="mel@gmail.com",password="1234",username="melvin")), headers={
+               "content-type": "application/json"
+           }
         )
         #login the user
-        response = self.client.post("api/v1/users/auth/login",
+        response = self.client.post("/api/v1/users/auth/login",
         data=json.dumps(dict(username="melvin",password="1234")),
-        content_type = ("application/json"))
-        # from nose.tools import set_trace; set_trace()
+        content_type="application/json")
+        from nose.tools import set_trace; set_trace()
         response_msg = json.loads(response.data.decode())
-        self.assertEqual(response_msg["message"],"successfully logged in")
-        self.assertEqual(response_msg.status_code,200)
+        # self.assertEqual(response_msg["message"],"successfully logged in")
+        self.assertEqual(response_msg["status_code"],200)
 
 
 #     def test_request_creation(self):
